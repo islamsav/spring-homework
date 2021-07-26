@@ -17,7 +17,7 @@
 </head>
 <body>
 <div id="login_form">
-    <form method="post" th:action="@{/login/auth}" th:object="${loginForm}">
+    <form th:method="post" th:action="@{/login/auth}" th:object="${loginForm}">
         <img class="login_item" th:src="@{/images/book.png}">
         <br>
         <input class="login_item" type="text" placeholder="enter username" th:field="*{username}">
@@ -25,6 +25,7 @@
         <input class="login_item" type="password" placeholder="password" th:field="*{password}">
         <br>
         <input class="login_item" type="submit" value="login">
+        <a th:href="@{/registration}">create new account</a>
     </form>
 </div>
 </body>

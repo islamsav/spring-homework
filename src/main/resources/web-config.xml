@@ -36,5 +36,5 @@
         <property name="cacheable" value="true"/>
     </bean>
     
-<!--    <mvc:view-controller path="/book/shelf" view-name="book_shelf"/>-->
+<!--    <mvc:view-controller path="/registration" view-name="registration_page.html"/>-->
 </beans>
