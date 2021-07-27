@@ -4,6 +4,7 @@ public class RegistrationForm {
 
     private String username;
     private String password;
+    private Integer id;
 
     public RegistrationForm(String username, String password) {
         this.username = username;
@@ -11,6 +12,14 @@ public class RegistrationForm {
     }
 
     public RegistrationForm() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {

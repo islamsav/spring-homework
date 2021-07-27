@@ -30,7 +30,7 @@ public class RegistrationController {
 
     @PostMapping(value = "/create")
     public String registerNewUser(@ModelAttribute("registrationForm") RegistrationForm registrationForm) {
-        registrationService.sout();
+        registrationService.saveUser(registrationForm);
         return "redirect:/login";
     }
 }

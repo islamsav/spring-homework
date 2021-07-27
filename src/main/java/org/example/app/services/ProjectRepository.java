@@ -6,7 +6,7 @@ public interface ProjectRepository<T> {
 
     List<T> retreiveAll();
 
-    void store(T book);
+    void store(T item);
 
-    boolean removeItemById(Integer bookIdToRemove);
+    boolean removeItemById(Integer itemIdToRemove);
 }
