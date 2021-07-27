@@ -38,7 +38,7 @@
                     <input type="text" placeholder="author" th:field="*{author}" required>
                 </td>
                 <td>
-                    <input type="text" placeholder="book_title" th:field="*{title}" required>
+                    <input type="text" placeholder="title" th:field="*{title}" required>
                 </td>
                 <td>
                     <input type="number" placeholder="size (pages)" th:field="*{size}" required>
@@ -50,11 +50,17 @@
         </table>
     </form>
 
-    <form method="post" th:action="@{/books/remove}">
+    <form method="post" th:action="@{/books/remove}" th:object="${bookToRemove}">
         <table>
             <tr>
                 <td>
-                    <input type="number" placeholder="id number" th:name="bookIdToRemove">
+                    <input type="text" placeholder="author" th:name="author">
+                </td>
+                <td>
+                    <input type="text" placeholder="title" th:name="title">
+                </td>
+                <td>
+                    <input type="number" placeholder="id number" th:name="id">
                 </td>
                 <td>
                     <input type="submit" value="remove">

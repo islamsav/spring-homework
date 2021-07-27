@@ -29,4 +29,9 @@ public class UserRepository implements ProjectRepository<RegistrationForm> {
     public boolean removeItemById(Integer userIdToRemove) {
         return false;
     }
+
+    @Override
+    public void removeItemByParam(RegistrationForm item) {
+        // implement me
+    }
 }

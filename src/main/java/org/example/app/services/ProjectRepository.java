@@ -9,4 +9,6 @@ public interface ProjectRepository<T> {
     void store(T item);
 
     boolean removeItemById(Integer itemIdToRemove);
+
+    void removeItemByParam(T item);
 }
