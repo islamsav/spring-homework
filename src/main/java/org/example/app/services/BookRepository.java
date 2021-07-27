@@ -40,7 +40,8 @@ public class BookRepository implements ProjectRepository<Book> {
         retreiveAll().forEach(book -> {
             if (book.getId().equals(item.getId()) ||
                     book.getAuthor().equals(item.getAuthor()) ||
-                    book.getTitle().equals(item.getTitle())) {
+                    book.getTitle().equals(item.getTitle()) ||
+                    book.getSize().equals(item.getSize())) {
                 logger.info("remove book by id: " + book.getId());
                 repo.remove(book);
             }
