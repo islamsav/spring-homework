@@ -18,11 +18,12 @@
 <body>
 <div id="registration_form">
     <form th:method="post" th:action="@{/registration/create}" th:object="${registrationForm}">
-        <input class="reg_item" type="text" placeholder="username" th:field="*{username}">
+        <h3>Registration</h3>
+        <input class="reg_item" type="text" placeholder="username" th:field="*{username}" required>
         <br>
-        <input class="reg_item" type="password" placeholder="password" th:field="*{password}">
+        <input class="reg_item" type="password" placeholder="password" th:field="*{password}" required>
         <br>
-        <input class="reg_item" type="submit" value="create">
+        <input class="reg_item" type="submit" value="Create">
     </form>
 </div>
 </body>
