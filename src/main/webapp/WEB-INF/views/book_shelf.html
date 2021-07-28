@@ -20,10 +20,6 @@
             border-collapse: collapse;
         }
 
-        h4 {
-            padding: 25px;
-        }
-
         table {
             margin: 25px;
         }
@@ -106,24 +102,7 @@
             <th>title</th>
             <th>size</th>
         </tr>
-        <h4>All books</h4>
         <tr th:each="book : ${bookList}">
-            <td th:text="${book.id}"></td>
-            <td th:text="${book.author}"></td>
-            <td th:text="${book.title}"></td>
-            <td th:text="${book.size}"></td>
-        </tr>
-    </table>
-
-    <table id="books_filter">
-        <tr>
-            <th>id</th>
-            <th>author</th>
-            <th>title</th>
-            <th>size</th>
-        </tr>
-        <h4>Filter</h4>
-        <tr th:each="book : ${bookFilter}">
             <td th:text="${book.id}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.title}"></td>

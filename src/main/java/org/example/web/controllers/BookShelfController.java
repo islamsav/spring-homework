@@ -46,7 +46,7 @@ public class BookShelfController {
 
     @PostMapping(value = "/filter")
     public String filterBookList(Model model, Book book) {
-        model.addAttribute("bookFilter", bookService.bookToFilter(book));
+        model.addAttribute("bookList", bookService.bookToFilter(book));
         return "book_shelf";
     }
 }
