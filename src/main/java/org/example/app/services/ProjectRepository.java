@@ -11,4 +11,6 @@ public interface ProjectRepository<T> {
     boolean removeItemById(Integer itemIdToRemove);
 
     void removeItemByParam(T item);
+
+    List<T> filterByParam(T item);
 }

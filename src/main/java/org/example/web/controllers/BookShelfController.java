@@ -43,4 +43,10 @@ public class BookShelfController {
         bookService.bookToRemove(book);
         return "redirect:/books/shelf";
     }
+
+    @PostMapping(value = "/filter")
+    public String filterBookList(Model model, Book book) {
+        model.addAttribute("bookFilter", bookService.bookToFilter(book));
+        return "book_shelf";
+    }
 }

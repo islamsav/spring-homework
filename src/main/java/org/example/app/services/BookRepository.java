@@ -47,4 +47,19 @@ public class BookRepository implements ProjectRepository<Book> {
             }
         });
     }
+
+    @Override
+    public List<Book> filterByParam(Book item) {
+        List<Book> filterList = new ArrayList<>();
+        retreiveAll().forEach(book -> {
+            if (book.getId().equals(item.getId()) ||
+                    book.getAuthor().equals(item.getAuthor()) ||
+                    book.getTitle().equals(item.getTitle()) ||
+                    book.getSize().equals(item.getSize())) {
+                logger.info("remove book by id: " + book.getId());
+                filterList.add(book);
+            }
+        });
+        return filterList;
+    }
 }

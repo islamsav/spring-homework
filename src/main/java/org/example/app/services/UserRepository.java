@@ -34,4 +34,10 @@ public class UserRepository implements ProjectRepository<RegistrationForm> {
     public void removeItemByParam(RegistrationForm item) {
         // implement me
     }
+
+    @Override
+    public List<RegistrationForm> filterByParam(RegistrationForm item) {
+        // implement me
+        return null;
+    }
 }

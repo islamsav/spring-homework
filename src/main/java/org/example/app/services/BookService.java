@@ -31,4 +31,8 @@ public class BookService {
     public void bookToRemove(Book book) {
         bookRepo.removeItemByParam(book);
     }
+
+    public List<Book> bookToFilter(Book book) {
+        return bookRepo.filterByParam(book);
+    }
 }
