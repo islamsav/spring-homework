@@ -35,13 +35,13 @@
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="author" th:field="*{author}" required>
+                    <input type="text" placeholder="author" th:field="*{author}">
                 </td>
                 <td>
-                    <input type="text" placeholder="book_title" th:field="*{title}" required>
+                    <input type="text" placeholder="book_title" th:field="*{title}">
                 </td>
                 <td>
-                    <input type="text" placeholder="size (pages)" th:field="*{size}" required>
+                    <input type="text" placeholder="size (pages)" th:field="*{size}">
                     <p th:if="${#fields.hasErrors()}">field value must be digit and less 4 signs</p>
                 </td>
                 <td>
@@ -51,7 +51,7 @@
         </table>
     </form>
 
-    <form method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
+    <form method="post" th:action="@{/books/re`move}" th:object="${bookIdToRemove}">
         <table>
             <tr>
                 <td>
