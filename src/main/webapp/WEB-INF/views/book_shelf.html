@@ -27,6 +27,9 @@
         th, td {
             border-bottom: 1px solid #ddd;
         }
+        p {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -36,13 +39,15 @@
             <tr>
                 <td>
                     <input type="text" placeholder="author" th:field="*{author}">
+                    <p th:if="${#fields.hasErrors('author')}">field cannot be empty</p>
                 </td>
                 <td>
                     <input type="text" placeholder="book_title" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors('title')}">field cannot be empty</p>
                 </td>
                 <td>
                     <input type="text" placeholder="size (pages)" th:field="*{size}">
-                    <p th:if="${#fields.hasErrors()}">field value must be digit and less 4 signs</p>
+                    <p th:if="${#fields.hasErrors('size')}">value must be digit and less 4 signs</p>
                 </td>
                 <td>
                     <input type="submit" placeholder="save">
