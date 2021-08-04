@@ -59,6 +59,18 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
     }
 
     @Override
+    public int removeBook(Book book) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", book.getId());
+        parameterSource.addValue("author", book.getAuthor());
+        parameterSource.addValue("title", book.getTitle());
+        parameterSource.addValue("size", book.getSize());
+        int amount = jdbcTemplate.update("DELETE FROM books WHERE id = :id OR author = :author OR title = :title OR size = :size", parameterSource);
+        logger.info("remove book completed");
+        return amount;
+    }
+
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = applicationContext;
     }

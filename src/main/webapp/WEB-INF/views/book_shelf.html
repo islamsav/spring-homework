@@ -56,17 +56,26 @@
         </table>
     </form>
 
-    <form method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
+    <form method="post" th:action="@{/books/remove}" th:object="${book}">
         <table>
             <tr>
                 <td>
-                    <input type="text" placeholder="id number" th:field="*{id}">
+                    <input type="text" placeholder="author" th:field="*{author}">
+                </td>
+                <td>
+                    <input type="text" placeholder="book_title" th:field="*{title}">
+                </td>
+                <td>
+                    <input type="number" placeholder="size" th:field="*{size}">
+                </td>
+                <td>
+                    <input type="number" placeholder="id number" th:field="*{id}">
                 </td>
                 <td>
                     <input type="submit" value="remove">
                 </td>
-                <td th:if="${#fields.hasErrors()}">
-                    <p>Wrong id or not found</p>
+                <td>
+                    <p th:text="${bookNotFound}"></p>
                 </td>
             </tr>
         </table>

@@ -57,15 +57,13 @@ public class BookShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(@Valid BookIdToRemove bookIdToRemove, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("book", new Book());
+    public String removeBook(Book book, Model model) {
+        if (bookService.removeBook(book) == 0) {
+            model.addAttribute("bookNotFound", "book not found");
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
-        } else {
-            bookService.removeBookById(bookIdToRemove.getId());
-            return "redirect:/books/shelf";
         }
+        return "redirect:/books/shelf";
     }
 
     @PostMapping("/uploadFile")

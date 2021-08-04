@@ -37,4 +37,8 @@ public class BookService {
     private void defaultDestroy() {
         logger.info("default DESTROY in book book service");
     }
+
+    public int removeBook(Book bookToRemove) {
+       return bookRepo.removeBook(bookToRemove);
+    }
 }

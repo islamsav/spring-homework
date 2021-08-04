@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 public class Book {
 
+    @NotNull
     private Integer id;
     @Size(min = 1, max = 250)
     private String author;
