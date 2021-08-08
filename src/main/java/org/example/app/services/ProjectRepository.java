@@ -13,4 +13,6 @@ public interface ProjectRepository<T> {
     boolean removeItemById(Integer bookIdToRemove);
 
     int removeBook(BookToRemove bookToRemove);
+
+    List<T> filter(T book);
 }

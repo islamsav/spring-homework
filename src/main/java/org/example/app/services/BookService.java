@@ -42,4 +42,8 @@ public class BookService {
     public int removeBook(BookToRemove bookToRemove) {
        return bookRepo.removeBook(bookToRemove);
     }
+
+    public List<Book> filter(Book book) {
+        return bookRepo.filter(book);
+    }
 }

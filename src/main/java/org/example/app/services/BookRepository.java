@@ -72,6 +72,23 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
     }
 
     @Override
+    public List<Book> filter(Book bookFilter) {
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("author", bookFilter.getAuthor());
+        parameters.addValue("title", bookFilter.getTitle());
+        parameters.addValue("size", bookFilter.getSize());
+        List<Book> books = jdbcTemplate.query("SELECT * FROM books WHERE author = :author OR title = :title OR size = :size", parameters, (rs, rowNum) -> {
+            Book book = new Book();
+            book.setId(rs.getInt("id"));
+            book.setAuthor(rs.getString("author"));
+            book.setTitle(rs.getString("title"));
+            book.setSize(rs.getInt("size"));
+            return book;
+        });
+        return new ArrayList<>(books);
+    }
+
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = applicationContext;
     }

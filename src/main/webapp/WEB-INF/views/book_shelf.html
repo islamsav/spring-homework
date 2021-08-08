@@ -81,6 +81,27 @@
         </table>
     </form>
 
+
+    <form method="post" th:action="@{/books/filter}" th:object="${bookFilter}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="author" th:name="author">
+                </td>
+                <td>
+                    <input type="text" placeholder="title" th:name="title">
+                </td>
+                <td>
+                    <input type="number" placeholder="size" th:name="size">
+                </td>
+                <td>
+                    <input type="submit" value="filter">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
     <form method="post" th:action="@{/books/uploadFile}" enctype="multipart/form-data">
         <table>
             <tr>

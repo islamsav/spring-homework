@@ -3,6 +3,7 @@ package org.example.web.controllers;
 import org.apache.log4j.Logger;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
+import org.example.web.dto.BookFilter;
 import org.example.web.dto.BookToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/books")
@@ -38,6 +40,7 @@ public class BookShelfController {
         logger.info(this.toString());
         model.addAttribute("book", new Book());
         model.addAttribute("bookToRemove", new BookToRemove());
+        model.addAttribute("bookFilter", new BookFilter());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
     }
@@ -67,6 +70,20 @@ public class BookShelfController {
         }
         return "redirect:/books/shelf";
     }
+
+    @PostMapping(value = "/filter")
+    public String filterBookList(Model model, Book book) {
+        List<Book> filter = bookService.filter(book);
+        if (!filter.isEmpty()) {
+            model.addAttribute("bookList", filter);
+            model.addAttribute("book", new Book());
+            model.addAttribute("bookToRemove", new BookToRemove());
+            model.addAttribute("bookFilter", new BookFilter());
+            return "book_shelf";
+        }
+        return "redirect:/books/shelf";
+    }
+
 
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file) throws Exception {
