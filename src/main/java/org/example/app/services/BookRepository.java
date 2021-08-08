@@ -2,6 +2,7 @@ package org.example.app.services;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
+import org.example.web.dto.BookToRemove;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -59,12 +60,12 @@ public class BookRepository implements ProjectRepository<Book>, ApplicationConte
     }
 
     @Override
-    public int removeBook(Book book) {
+    public int removeBook(BookToRemove bookToRemove) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("id", book.getId());
-        parameterSource.addValue("author", book.getAuthor());
-        parameterSource.addValue("title", book.getTitle());
-        parameterSource.addValue("size", book.getSize());
+        parameterSource.addValue("id", bookToRemove.getId());
+        parameterSource.addValue("author", bookToRemove.getAuthor());
+        parameterSource.addValue("title", bookToRemove.getTitle());
+        parameterSource.addValue("size", bookToRemove.getSize());
         int amount = jdbcTemplate.update("DELETE FROM books WHERE id = :id OR author = :author OR title = :title OR size = :size", parameterSource);
         logger.info("remove book completed");
         return amount;

@@ -2,6 +2,7 @@ package org.example.app.services;
 
 import org.apache.log4j.Logger;
 import org.example.web.dto.Book;
+import org.example.web.dto.BookToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class BookService {
         logger.info("default DESTROY in book book service");
     }
 
-    public int removeBook(Book bookToRemove) {
+    public int removeBook(BookToRemove bookToRemove) {
        return bookRepo.removeBook(bookToRemove);
     }
 }

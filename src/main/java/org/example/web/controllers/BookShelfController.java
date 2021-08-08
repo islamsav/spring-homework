@@ -3,7 +3,7 @@ package org.example.web.controllers;
 import org.apache.log4j.Logger;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
-import org.example.web.dto.BookIdToRemove;
+import org.example.web.dto.BookToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -37,16 +37,16 @@ public class BookShelfController {
     public String books(Model model) {
         logger.info(this.toString());
         model.addAttribute("book", new Book());
-        model.addAttribute("bookIdToRemove", new BookIdToRemove());
+        model.addAttribute("bookToRemove", new BookToRemove());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
     }
 
     @PostMapping("/save")
     public String saveBook(@Valid Book book, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasFieldErrors("title") || bindingResult.hasFieldErrors("author") || bindingResult.hasFieldErrors("size")) {
             model.addAttribute("book", book);
-            model.addAttribute("bookIdToRemove", new BookIdToRemove());
+            model.addAttribute("bookToRemove", new BookToRemove());
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
         } else {
@@ -57,8 +57,9 @@ public class BookShelfController {
     }
 
     @PostMapping("/remove")
-    public String removeBook(Book book, Model model) {
-        if (bookService.removeBook(book) == 0) {
+    public String removeBook(BookToRemove bookToRemove, Model model) {
+        if (bookService.removeBook(bookToRemove) == 0) {
+            model.addAttribute("book", new Book());
             model.addAttribute("bookNotFound", "book not found");
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
