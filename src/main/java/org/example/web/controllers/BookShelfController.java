@@ -58,8 +58,9 @@ public class BookShelfController {
 
     @PostMapping("/remove")
     public String removeBook(BookToRemove bookToRemove, Model model) {
+        model.addAttribute("book", new Book());
         if (bookService.removeBook(bookToRemove) == 0) {
-            model.addAttribute("book", new Book());
+            model.addAttribute("bookToRemove", new BookToRemove());
             model.addAttribute("bookNotFound", "book not found");
             model.addAttribute("bookList", bookService.getAllBooks());
             return "book_shelf";
