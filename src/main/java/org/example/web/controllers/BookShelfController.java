@@ -1,5 +1,6 @@
 package org.example.web.controllers;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.example.app.services.BookService;
 import org.example.web.dto.Book;
@@ -109,17 +110,16 @@ public class BookShelfController {
     }
 
     @RequestMapping(path = "/download/{file_name}", method = RequestMethod.GET)
-    public ResponseEntity<Resource> download(@PathVariable("file_name") String param) throws IOException {
-        String rootPath = System.getProperty("catalina.home");
-        File dir = new File(rootPath + File.separator + "external_uploads" + File.separator + param);
+    public ResponseEntity<Resource> download(@PathVariable("file_name") String fileName) throws IOException {
+        File file = new File(fileName);
 
-//        FileUtils.copyInputStreamToFile(getClass().getClassLoader().getResourceAsStream("files/file"), new File("")) делать так чтобы брать файл из ресурсов
-
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(dir));
+        FileUtils.copyInputStreamToFile(getClass().getClassLoader().getResourceAsStream("files" + File.separator + fileName), file);
+        String filePath = file.getAbsolutePath();
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(filePath));
 
         return ResponseEntity.ok()
-                .contentLength(dir.length())
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + param + "\"")
+                .contentLength(file.length())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
     }
