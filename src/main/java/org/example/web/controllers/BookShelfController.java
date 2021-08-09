@@ -74,14 +74,17 @@ public class BookShelfController {
     @PostMapping(value = "/filter")
     public String filterBookList(Model model, Book book) {
         List<Book> filter = bookService.filter(book);
-        if (!filter.isEmpty()) {
+        if (filter.isEmpty()) {
+            model.addAttribute("bookFilterNotFound", "found 0 books with this filter");
+            model.addAttribute("bookList", bookService.getAllBooks());
+        } else {
             model.addAttribute("bookList", filter);
-            model.addAttribute("book", new Book());
-            model.addAttribute("bookToRemove", new BookToRemove());
-            model.addAttribute("bookFilter", new BookFilter());
-            return "book_shelf";
         }
-        return "redirect:/books/shelf";
+        logger.info(String.format("returns %s books", filter.size()));
+        model.addAttribute("bookFilter", new BookFilter());
+        model.addAttribute("bookToRemove", new BookToRemove());
+        model.addAttribute("book", new Book());
+        return "book_shelf";
     }
 
 
