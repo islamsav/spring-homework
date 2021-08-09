@@ -7,19 +7,19 @@ import org.example.web.dto.BookFilter;
 import org.example.web.dto.BookToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.List;
 
 @Controller
@@ -106,5 +106,21 @@ public class BookShelfController {
         logger.info("new file saved at: " + serverFile.getAbsolutePath());
 
         return "redirect:/books/shelf";
+    }
+
+    @RequestMapping(path = "/download/{file_name}", method = RequestMethod.GET)
+    public ResponseEntity<Resource> download(@PathVariable("file_name") String param) throws IOException {
+        String rootPath = System.getProperty("catalina.home");
+        File dir = new File(rootPath + File.separator + "external_uploads" + File.separator + param);
+
+//        FileUtils.copyInputStreamToFile(getClass().getClassLoader().getResourceAsStream("files/file"), new File("")) делать так чтобы брать файл из ресурсов
+
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(dir));
+
+        return ResponseEntity.ok()
+                .contentLength(dir.length())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + param + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
     }
 }
