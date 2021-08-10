@@ -26,5 +26,5 @@ ___
 2. В верхней панели перейти в **Add Configuration**, нажать **add new**, в списке выбрать **TomCat Server local**
 3. Перейти на вкладку **Deployment**, нажать **+**, выбрать **Artifact**, далее выбрать **simple mvc war exploded**
 4. Перейти на вкладку **Server** и в поле **URL** ввести
-   значение **http://localhost:8080/simple_mvc_war_exploded/login**
+   значение ```http://localhost:8080/simple_mvc_war_exploded/login```
 5. Кликнуть **OK** и запустить
