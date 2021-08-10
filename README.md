@@ -16,4 +16,4 @@ ___
 
 ## Как запустить проект
 
-Запустить файл **main** метод **MyBookShopAppApplicationTests.java**
+Запустить файл **main** метод **MyBookShopAppApplication.java**
