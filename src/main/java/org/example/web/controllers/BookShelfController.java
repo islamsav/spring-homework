@@ -7,7 +7,6 @@ import org.example.web.dto.Book;
 import org.example.web.dto.BookFilter;
 import org.example.web.dto.BookToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -25,11 +24,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/books")
-@Scope("singleton")
 public class BookShelfController {
 
-    private Logger logger = Logger.getLogger(BookShelfController.class);
-    private BookService bookService;
+    private final Logger logger = Logger.getLogger(BookShelfController.class);
+    private final BookService bookService;
 
     @Autowired
     public BookShelfController(BookService bookService) {
@@ -100,9 +98,9 @@ public class BookShelfController {
         }
 
         File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
-        BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-        stream.write(bytes);
-        stream.close();
+        try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+            stream.write(bytes);
+        }
 
         logger.info("new file saved at: " + serverFile.getAbsolutePath());
 

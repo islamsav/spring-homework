@@ -49,7 +49,8 @@ public class WebContextConfig implements WebMvcConfigurer {
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxInMemorySize(5000000);
+        final int maxInMemorySize = 5000000;
+        multipartResolver.setMaxInMemorySize(maxInMemorySize);
         return multipartResolver;
     }
 }

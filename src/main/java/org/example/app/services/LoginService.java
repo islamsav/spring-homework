@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-    private Logger logger = Logger.getLogger(LoginService.class);
-
+    private final Logger logger = Logger.getLogger(LoginService.class);
 
     public boolean authenticate(LoginForm loginForm) {
         logger.info("try auth with user-data " + loginForm.toString());
