@@ -15,7 +15,7 @@
 <head>
     <title>Тут название страницы написать</title>
     <meta name="description" content="Описание страницы">
-    <meta charset="utf-8">
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <!--meta( http-equiv="cache-control" content="no-cache")-->
     <!--meta( http-equiv="expires" content="0")-->
@@ -66,6 +66,7 @@ p.error-browser
                         <div class="search">
                             <form class="form form_search" action="#" method="post" data-searchlimit="20">
                                 <input class="search-input" id="query" name="query" type="text"
+                                       th:placeholder="#{searchbar.placeholder}"
                                        placeholder="Search over 30 million book titles" value=""/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
                                 </button>
@@ -119,15 +120,15 @@ p.error-browser
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item menu-item_ACTIVE"><a class="menu-link" href="/bookshop/main">Главная</a>
+                    <li class="menu-item menu-item_ACTIVE"><a class="menu-link" href="/bookshop/main" th:text="#{topbar.main}">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/bookshop/genres">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/bookshop/genres" th:text="#{topbar.genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:text="#{topbar.news}">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:text="#{topbar.popular}">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/bookshop/authors">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/bookshop/authors" th:text="#{topbar.authors}">Авторы</a>
                     </li>
                 </ul>
             </nav>
@@ -347,15 +348,15 @@ p.error-browser
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"><a class="menu-link" href="/bookshop/main">Главная</a>
+                    <li class="menu-item"><a class="menu-link" href="/bookshop/main" th:text="#{topbar.main}">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/bookshop/genres">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/bookshop/genres" th:text="#{topbar.genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:text="#{topbar.news}">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:text="#{topbar.popular}">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/bookshop/authors">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/bookshop/authors" th:text="#{topbar.authors}">Авторы</a>
                     </li>
                 </ul>
             </div>
