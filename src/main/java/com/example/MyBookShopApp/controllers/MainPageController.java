@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.BookService;
+import com.example.MyBookShopApp.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class MainPageController {
 
     @GetMapping("/main")
     public String mainPage(Model model) {
-        model.addAttribute("bookData", bookService.getBooksData());
+        model.addAttribute("bookData", bookService.getAllBooks());
         return "index";
     }
 
@@ -31,7 +31,7 @@ public class MainPageController {
 
     @GetMapping("/authors")
     public String authorsPage(Model model) {
-        model.addAttribute("bookAuthors", bookService.getBooksData());
+        model.addAttribute("bookAuthors", bookService.getAllBooks());
         return "authors/authors";
     }
 }
