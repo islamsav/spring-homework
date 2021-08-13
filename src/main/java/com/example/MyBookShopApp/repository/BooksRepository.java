@@ -1,21 +1,22 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.repository;
 
 import com.example.MyBookShopApp.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class BookService {
+@Repository
+public class BooksRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BookService(JdbcTemplate jdbcTemplate) {
+    public BooksRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
