@@ -2,7 +2,7 @@
 ___
 
 ### Используемые технологии
-* Spring Book
+* Spring Boot
 * Thymeleaf
 * Spring JDBC
 * H2
