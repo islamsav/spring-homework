@@ -67,6 +67,16 @@
                         </svg>
                     </a>
                     </li>
+                    <ui>
+                        <p>
+                            <span th:text="#{footer.selectLang}">Выбор языка</span>
+                            <select id="locales">
+                                <option value=" "></option>
+                                <option value="en">English</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </p>
+                    </ui>
                 </ul>
             </div>
             <div class="row-block">
@@ -95,16 +105,6 @@
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/contacts.html" th:href="@{/contacts}" th:text="#{footer.contacts}">Контакты</a>
                     </li>
-                    <ui>
-                        <p>
-                            <span th:text="#{footer.selectLang}">Выбор языка</span>
-                            <select id="locales">
-                                <option value=" "></option>
-                                <option value="en">English</option>
-                                <option value="ru">Русский</option>
-                            </select>
-                        </p>
-                    </ui>
                 </ul>
             </div>
         </div>
