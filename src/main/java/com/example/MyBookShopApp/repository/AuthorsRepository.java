@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Repository
 public class AuthorsRepository {
@@ -20,7 +18,7 @@ public class AuthorsRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Map<String, List<Author>> getAuthorsMap() {
+    public List<Author> getAuthors() {
         List<Author> authors = jdbcTemplate.query("SELECT * FROM authors", (ResultSet rs, int rowNum) -> {
             Author author = new Author();
             author.setId(rs.getInt("id"));
@@ -28,11 +26,6 @@ public class AuthorsRepository {
             author.setLastName(rs.getString("last_name"));
             return author;
         });
-//  FIXME из репозитария возвращайте просто список авторов,
-//   а группировку в мапу выполняйте на уровне сервиса,
-//   в след модуле мы откажемся от репозитария через jdbcTemplate
-        return authors.stream().collect(Collectors.groupingBy((Author a) -> {
-            return a.getLastName().substring(0, 1);
-        }));
+        return authors;
     }
 }

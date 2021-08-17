@@ -28,4 +28,9 @@ public class PopularController {
     public String popularPage() {
         return "books/popular";
     }
+
+    @ModelAttribute("popularPageActiveItem")
+    public String activeItem() {
+        return "menu-item menu-item_ACTIVE";
+    }
 }

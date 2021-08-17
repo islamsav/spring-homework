@@ -31,4 +31,9 @@ public class RecentController {
     public List<Book> bookList() {
         return booksService.getAllBooks();
     }
+
+    @ModelAttribute("recentPageActiveItem")
+    public String activeItem() {
+        return "menu-item menu-item_ACTIVE";
+    }
 }

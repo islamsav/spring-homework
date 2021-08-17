@@ -29,4 +29,9 @@ public class AuthorsController {
     public String authorsPage() {
         return "/authors/index";
     }
+
+    @ModelAttribute("authorsPageActiveItem")
+    public String activeItem() {
+        return "menu-item menu-item_ACTIVE";
+    }
 }

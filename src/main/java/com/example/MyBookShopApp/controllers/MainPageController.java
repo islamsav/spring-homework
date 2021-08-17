@@ -24,6 +24,11 @@ public class MainPageController {
         return booksService.getAllBooks();
     }
 
+    @ModelAttribute("mainPageActiveItem")
+    public String activeItem() {
+        return "menu-item menu-item_ACTIVE";
+    }
+
     @GetMapping("/")
     public String mainPage() {
         return "index";
