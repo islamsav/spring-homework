@@ -4,7 +4,6 @@ import com.example.MyBookShopApp.dto.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -29,6 +28,9 @@ public class AuthorsRepository {
             author.setLastName(rs.getString("last_name"));
             return author;
         });
+//  FIXME из репозитария возвращайте просто список авторов,
+//   а группировку в мапу выполняйте на уровне сервиса,
+//   в след модуле мы откажемся от репозитария через jdbcTemplate
         return authors.stream().collect(Collectors.groupingBy((Author a) -> {
             return a.getLastName().substring(0, 1);
         }));
