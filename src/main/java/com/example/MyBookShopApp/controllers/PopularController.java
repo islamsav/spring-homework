@@ -31,6 +31,6 @@ public class PopularController {
 
     @ModelAttribute("popularPageActiveItem")
     public String activeItem() {
-        return "menu-item menu-item_ACTIVE";
+        return "menu-item_ACTIVE";
     }
 }

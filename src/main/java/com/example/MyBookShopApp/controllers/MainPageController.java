@@ -26,7 +26,7 @@ public class MainPageController {
 
     @ModelAttribute("mainPageActiveItem")
     public String activeItem() {
-        return "menu-item menu-item_ACTIVE";
+        return "menu-item_ACTIVE";
     }
 
     @GetMapping("/")

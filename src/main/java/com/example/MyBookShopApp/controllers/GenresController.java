@@ -14,6 +14,6 @@ public class GenresController {
 
     @ModelAttribute("genresPageActiveItem")
     public String activeItem() {
-        return "menu-item menu-item_ACTIVE";
+        return "menu-item_ACTIVE";
     }
 }
