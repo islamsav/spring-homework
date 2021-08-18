@@ -1,10 +1,14 @@
 package com.example.MyBookShopApp.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "authors")
 public class Author {
@@ -15,4 +19,13 @@ public class Author {
 
     private String firstName;
     private String lastName;
+
+    @OneToMany
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private List<Book> bookList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
