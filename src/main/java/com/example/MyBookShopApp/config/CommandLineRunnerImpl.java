@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.config;
 
 import com.example.MyBookShopApp.dto.TestEntity;
+import com.example.MyBookShopApp.repository.BookRepositoryCrud;
 import com.example.MyBookShopApp.repository.TestEntityCrudRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import org.springframework.context.annotation.Configuration;
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     private final TestEntityCrudRepository testEntityCrudRepository;
+    private final BookRepositoryCrud bookRepositoryCrud;
 
     @Autowired
-    public CommandLineRunnerImpl(TestEntityCrudRepository testEntityCrudRepository) {
+    public CommandLineRunnerImpl(TestEntityCrudRepository testEntityCrudRepository, BookRepositoryCrud bookRepositoryCrud) {
         this.testEntityCrudRepository = testEntityCrudRepository;
+        this.bookRepositoryCrud = bookRepositoryCrud;
     }
 
 
@@ -42,6 +45,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         }
 
         deleteTestEntityById(5L);
+
+        log.info(bookRepositoryCrud.findBooksByAuthor_FirstName("Rayner").toString());
+
+        log.info(bookRepositoryCrud.customFindAllBooks().toString());
     }
 
     private void deleteTestEntityById(long id) {
