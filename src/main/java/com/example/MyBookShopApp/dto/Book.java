@@ -17,6 +17,7 @@ public class Book {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
     private String title;
+    @Column(name = "price_old")
     private String priceOld;
     private String price;
 }

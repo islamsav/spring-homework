@@ -1,14 +1,12 @@
 package com.example.MyBookShopApp.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "authors")
 public class Author {
@@ -17,7 +15,9 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
     @OneToMany(mappedBy = "author")

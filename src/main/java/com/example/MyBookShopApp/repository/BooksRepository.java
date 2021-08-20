@@ -9,14 +9,14 @@ import java.util.List;
 @Repository
 public class BooksRepository {
 
-    private final BookRepositoryCrud bookRepository;
+    private final BookCrudRepository bookRepository;
 
     @Autowired
-    public BooksRepository(BookRepositoryCrud bookRepository) {
+    public BooksRepository(BookCrudRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     public List<Book> getBooksData() {
-        return bookRepository.findAll();
+        return bookRepository.getAllBooks();
     }
 }
