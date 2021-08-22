@@ -13,7 +13,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Entity
 @Table(name = "authors")
-public class Author {
+public class Authors {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Author {
     private String lastName;
 
     @OneToMany(mappedBy = "author")
-    private List<Book> bookList = new ArrayList<>();
+    private List<Books> bookList = new ArrayList<>();
 
     @Override
     public String toString() {

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "books")
-public class Book {
+public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
+    private Authors author;
     private String title;
     private String priceOld;
     private String price;

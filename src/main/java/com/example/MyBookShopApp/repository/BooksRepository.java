@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.repository;
 
-import com.example.MyBookShopApp.entities.Book;
+import com.example.MyBookShopApp.entities.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +16,7 @@ public class BooksRepository {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> getBooksData() {
+    public List<Books> getBooksData() {
         return bookRepository.getAllBooks();
     }
 }

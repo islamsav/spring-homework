@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.repository;
 
-import com.example.MyBookShopApp.entities.Author;
+import com.example.MyBookShopApp.entities.Authors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +16,7 @@ public class AuthorsRepository {
         this.authorCrudRepository = authorCrudRepository;
     }
 
-    public List<Author> getAuthors() {
+    public List<Authors> getAuthors() {
         return authorCrudRepository.getAllAuthors();
     }
 }

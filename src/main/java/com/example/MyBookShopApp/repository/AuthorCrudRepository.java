@@ -1,13 +1,13 @@
 package com.example.MyBookShopApp.repository;
 
-import com.example.MyBookShopApp.entities.Author;
+import com.example.MyBookShopApp.entities.Authors;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface AuthorCrudRepository extends JpaRepository<Author, Long> {
+public interface AuthorCrudRepository extends JpaRepository<Authors, Long> {
 
-    @Query("from Author")
-    List<Author> getAllAuthors();
+    @Query("from Authors")
+    List<Authors> getAllAuthors();
 }
