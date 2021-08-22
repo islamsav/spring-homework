@@ -1,17 +1,22 @@
-package com.example.MyBookShopApp.data.book.review;
+package com.example.MyBookShopApp.entities.book.review;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "book_review")
 public class BookReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "INT NOT NULL")

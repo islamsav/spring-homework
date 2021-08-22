@@ -1,17 +1,22 @@
-package com.example.MyBookShopApp.data.user;
+package com.example.MyBookShopApp.entities.user;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")

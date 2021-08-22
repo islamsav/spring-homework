@@ -1,16 +1,21 @@
-package com.example.MyBookShopApp.data.genre;
+package com.example.MyBookShopApp.entities.genre;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "genre")
 public class GenreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "INT")

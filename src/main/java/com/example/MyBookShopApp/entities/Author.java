@@ -1,18 +1,23 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "authors")
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private Integer id;
 
     private String firstName;

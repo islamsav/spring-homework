@@ -1,18 +1,23 @@
-package com.example.MyBookShopApp.data.user;
+package com.example.MyBookShopApp.entities.user;
 
-import com.example.MyBookShopApp.data.enums.ContactType;
-import lombok.Data;
+import com.example.MyBookShopApp.entities.enums.ContactType;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "user_contact")
 public class UserContactEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "INT NOT NULL")

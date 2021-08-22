@@ -1,16 +1,21 @@
-package com.example.MyBookShopApp.data.book.file;
+package com.example.MyBookShopApp.entities.book.file;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "file_download")
 public class FileDownloadEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "INT NOT NULL")

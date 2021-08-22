@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.repository;
 
-import com.example.MyBookShopApp.data.Author;
+import com.example.MyBookShopApp.entities.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

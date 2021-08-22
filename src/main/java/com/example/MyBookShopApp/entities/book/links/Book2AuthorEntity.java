@@ -1,16 +1,21 @@
-package com.example.MyBookShopApp.data.book.links;
+package com.example.MyBookShopApp.entities.book.links;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "book2author")
 public class Book2AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private int id;
 
     @Column(columnDefinition = "INT NOT NULL")
