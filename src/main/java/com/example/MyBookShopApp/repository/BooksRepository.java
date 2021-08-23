@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.repository;
 
-import com.example.MyBookShopApp.entities.Books;
+import com.example.MyBookShopApp.entity.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,14 +9,14 @@ import java.util.List;
 @Repository
 public class BooksRepository {
 
-    private final BookCrudRepository bookRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
-    public BooksRepository(BookCrudRepository bookRepository) {
+    public BooksRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-    public List<Books> getBooksData() {
-        return bookRepository.getAllBooks();
+    public List<Book> getBooksData() {
+        return bookRepository.findAll();
     }
 }
