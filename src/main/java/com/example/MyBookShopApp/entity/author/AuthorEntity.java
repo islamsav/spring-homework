@@ -1,17 +1,13 @@
 package com.example.MyBookShopApp.entity.author;
 
-import com.example.MyBookShopApp.entity.book.Book;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.MyBookShopApp.entity.book.BookEntity;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "author")
-public class Author {
+public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT NOT NULL AUTO_INCREMENT")
@@ -30,7 +26,7 @@ public class Author {
     private String slug;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    private Set<BookEntity> books;
 
     public Integer getId() {
         return id;
@@ -72,11 +68,11 @@ public class Author {
         this.slug = slug;
     }
 
-    public Set<Book> getBooks() {
+    public Set<BookEntity> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(Set<BookEntity> books) {
         this.books = books;
     }
 }

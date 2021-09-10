@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.entity.book;
 
-import com.example.MyBookShopApp.entity.author.Author;
+import com.example.MyBookShopApp.entity.author.AuthorEntity;
 import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "book")
-public class Book {
+public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT NOT NULL AUTO_INCREMENT")
@@ -53,7 +53,7 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     @JsonIgnore
-    private List<Author> authors;
+    private List<AuthorEntity> authors;
 
     @ManyToMany
     @JsonIgnore

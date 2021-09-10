@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.entity.book.Book;
+import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,22 +20,22 @@ public class BooksService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> getAllBooks() {
+    public List<BookEntity> getAllBooks() {
         return bookRepository.findAll();
     }
 
-    public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit) {
+    public Page<BookEntity> getPageOfRecommendedBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
     }
 
-    public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit) {
+    public Page<BookEntity> getPageOfRecentBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         // добавить логику по датам
         return bookRepository.findAll(nextPage);
     }
 
-    public Page<Book> getPageOfPopularBooks(Integer offset, Integer limit) {
+    public Page<BookEntity> getPageOfPopularBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         // добавить логику по популярности
         return bookRepository.findAll(nextPage);

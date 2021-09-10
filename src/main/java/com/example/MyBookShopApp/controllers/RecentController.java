@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
-import com.example.MyBookShopApp.entity.book.Book;
+import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.service.BooksService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class RecentController {
     }
 
     @ModelAttribute("bookList")
-    public List<Book> bookList() {
+    public List<BookEntity> bookList() {
         return booksService.getAllBooks();
     }
 
