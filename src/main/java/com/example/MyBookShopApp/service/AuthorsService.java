@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.service;
 
 import com.example.MyBookShopApp.entity.author.Author;
-import com.example.MyBookShopApp.repository.AuthorsRepository;
+import com.example.MyBookShopApp.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,15 @@ import java.util.stream.Collectors;
 @Service
 public class AuthorsService {
 
-    private final AuthorsRepository authorsRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
-    public AuthorsService(AuthorsRepository authorsRepository) {
-        this.authorsRepository = authorsRepository;
+    public AuthorsService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
     }
 
     public Map<String, List<Author>> getAuthorsMap() {
-        return authorsRepository.getAuthors()
+        return authorRepository.findAll()
                 .stream()
                 .collect(Collectors.groupingBy((Author a) -> a.getName().substring(0, 1)));
     }
