@@ -40,6 +40,11 @@ public class MainPageController {
         return booksService.getPageOfRecentBooks(0, 6).getContent();
     }
 
+    @ModelAttribute("popularBooks")
+    public List<Book> popularBooks() {
+        return booksService.getPageOfPopularBooks(0, 6).getContent();
+    }
+
     @ModelAttribute("mainPageActiveItem")
     public String activeItem() {
         return "menu-item_ACTIVE";

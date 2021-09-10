@@ -34,4 +34,10 @@ public class BooksService {
         // добавить логику по датам
         return bookRepository.findAll(nextPage);
     }
+
+    public Page<Book> getPageOfPopularBooks(Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        // добавить логику по популярности
+        return bookRepository.findAll(nextPage);
+    }
 }
