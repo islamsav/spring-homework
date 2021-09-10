@@ -28,4 +28,10 @@ public class BooksService {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
     }
+
+    public Page<Book> getPageOfRecentBooks(Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        // добавить логику по датам
+        return bookRepository.findAll(nextPage);
+    }
 }

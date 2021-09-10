@@ -17,6 +17,11 @@ public class MainPageController {
 
     private final BooksService booksService;
 
+    @Autowired
+    public MainPageController(BooksService booksService) {
+        this.booksService = booksService;
+    }
+
     @GetMapping("/books/recommended")
     @ResponseBody
     public BooksPageDto getRecommendedBooks(
@@ -25,14 +30,14 @@ public class MainPageController {
         return new BooksPageDto(booksService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
-    @Autowired
-    public MainPageController(BooksService booksService) {
-        this.booksService = booksService;
-    }
-
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
         return booksService.getPageOfRecommendedBooks(0, 6).getContent();
+    }
+
+    @ModelAttribute("recentBooks")
+    public List<Book> recentBooks() {
+        return booksService.getPageOfRecentBooks(0, 6).getContent();
     }
 
     @ModelAttribute("mainPageActiveItem")
