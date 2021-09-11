@@ -36,8 +36,7 @@ public class RecentController {
             @RequestParam("offset") Integer offset,
             @RequestParam("limit") Integer limit) {
         log.info("from={}, to={}", from, to);
-        // TODO сделать SQL для выбора кник по диапазону дат
-        return new BooksPageDto(booksService.getPageOfRecentBooks(offset, limit).getContent());
+        return new BooksPageDto(booksService.getPageOfRecentBooksWithPubDateBetween(offset, limit, from, to).getContent());
     }
 
     @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
