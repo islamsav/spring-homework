@@ -1,7 +1,9 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.dto.recent.RecentByDateDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.repository.BookRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,9 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Service
+@Slf4j
 public class BooksService {
 
     private final BookRepository bookRepository;
@@ -37,13 +41,18 @@ public class BooksService {
         return bookRepository.findAll(nextPage);
     }
 
-    public Page<BookEntity> getPageOfRecentBooksWithPubDateBetween(Integer offset, Integer limit, String from, String to) {
+    public Page<BookEntity> getPageOfRecentBooksWithPubDateBetween(Integer offset, Integer limit, RecentByDateDto recentByDateDto) {
         Pageable nextPage = PageRequest.of(offset, limit);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        if (from.equals("0") || to.equals("0")) {
-           return bookRepository.findAll(nextPage);
+        LocalDate from;
+        LocalDate to;
+        try {
+            from = LocalDate.parse(recentByDateDto.getFrom(), formatter);
+            to = LocalDate.parse(recentByDateDto.getTo(), formatter);
+        } catch (DateTimeParseException e) {
+            return bookRepository.findAll(nextPage);
         }
-        return bookRepository.findAllByPubDateBetween(LocalDate.parse(from, formatter), LocalDate.parse(to, formatter), nextPage);
+        return bookRepository.findAllByPubDateBetween(from, to, nextPage);
     }
 
     public Page<BookEntity> getPageOfPopularBooks(Integer offset, Integer limit) {

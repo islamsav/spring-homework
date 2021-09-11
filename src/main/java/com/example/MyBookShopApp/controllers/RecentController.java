@@ -28,15 +28,13 @@ public class RecentController {
         this.booksService = booksService;
     }
 
-    @GetMapping()
+    @GetMapping
     @ResponseBody
     public BooksPageDto getRecentBooks(
-            @RequestParam(value = "from", required = false) String from,
-            @RequestParam(value = "to", required = false) String to,
             @RequestParam("offset") Integer offset,
-            @RequestParam("limit") Integer limit) {
-        log.info("from={}, to={}", from, to);
-        return new BooksPageDto(booksService.getPageOfRecentBooksWithPubDateBetween(offset, limit, from, to).getContent());
+            @RequestParam("limit") Integer limit,
+            RecentByDateDto recentByDateDto) {
+        return new BooksPageDto(booksService.getPageOfRecentBooksWithPubDateBetween(offset, limit, recentByDateDto).getContent());
     }
 
     @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
