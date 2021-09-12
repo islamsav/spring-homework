@@ -93,4 +93,7 @@ public class BookEntity {
     @OneToMany(mappedBy = "bookId")
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
+
+    @Column(name = "times_bought")
+    private Integer timesBought;
 }

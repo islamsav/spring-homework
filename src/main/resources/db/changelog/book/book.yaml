@@ -63,3 +63,13 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: 2
+      author: isavz
+      changes:
+        -  addColumn:
+             tableName:  book
+             columns:
+               -  column:
+                    name:  times_bought
+                    type:  INT
