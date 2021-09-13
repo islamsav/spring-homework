@@ -19,4 +19,8 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
             "group by b.id, b.description, b.discount, b.image, b.is_bestseller, b.price, b.pub_date, b.slug, b.title\n" +
             "order by times_bought desc", nativeQuery = true)
     List<BookEntity> booksToUser();
+
+//    B — количество пользователей, купивших книгу,
+//    C — количество пользователей, у которых книга находится в корзине,
+//    K — количество пользователей, у которых книга отложена.
 }

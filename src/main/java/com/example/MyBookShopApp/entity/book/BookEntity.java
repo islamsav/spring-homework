@@ -94,6 +94,12 @@ public class BookEntity {
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
 
-    @Column(name = "times_bought")
-    private Integer timesBought;
+    @Column(name = "status")
+    private String status;
+
+//    В поле “status” указан статус книги по отношению к текущему пользователю:
+//    KEPT (отложена),
+//    CART (в корзине)
+//    PAID (куплена, если она куплена или в архиве).
+//    Если книга не привязана, ключ “status” должен быть равен “false”.
 }

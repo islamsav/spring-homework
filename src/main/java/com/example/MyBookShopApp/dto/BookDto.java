@@ -21,4 +21,5 @@ public class BookDto {
     private LocalDate pubDate;
     private String slug;
     private String title;
+    private String status;
 }
