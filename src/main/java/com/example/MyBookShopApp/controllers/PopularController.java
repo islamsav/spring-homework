@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
+import com.example.MyBookShopApp.service.BooksRatingAndPopularityService;
 import com.example.MyBookShopApp.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,10 +18,12 @@ import java.util.List;
 public class PopularController {
 
     private final BooksService booksService;
+    private final BooksRatingAndPopularityService booksRatingAndPopularityService;
 
     @Autowired
-    public PopularController(BooksService booksService) {
+    public PopularController(BooksService booksService, BooksRatingAndPopularityService booksRatingAndPopularityService) {
         this.booksService = booksService;
+        this.booksRatingAndPopularityService = booksRatingAndPopularityService;
     }
 
     @GetMapping("/books/popular")
@@ -28,7 +31,7 @@ public class PopularController {
     public BooksPageDto getPopularBooks(
             @RequestParam("offset") Integer offset,
             @RequestParam("limit") Integer limit) {
-        return new BooksPageDto(booksService.getPageOfPopularBooks(offset, limit).getContent());
+        return new BooksPageDto(booksRatingAndPopularityService.getPageOfPopularBooks(offset, limit).getContent());
     }
 
     @ModelAttribute("bookList")

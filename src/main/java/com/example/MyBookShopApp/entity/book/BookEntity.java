@@ -5,6 +5,7 @@ import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -94,7 +95,7 @@ public class BookEntity {
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
 
-    @Column(name = "status")
+    @Column(name = "name")
     private String status;
 
 //    В поле “status” указан статус книги по отношению к текущему пользователю:

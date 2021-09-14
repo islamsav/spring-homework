@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
+import com.example.MyBookShopApp.service.BooksRatingAndPopularityService;
 import com.example.MyBookShopApp.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ import java.util.List;
 public class MainPageController {
 
     private final BooksService booksService;
+    private final BooksRatingAndPopularityService booksRatingAndPopularityService;
 
     @Autowired
-    public MainPageController(BooksService booksService) {
+    public MainPageController(BooksService booksService, BooksRatingAndPopularityService booksRatingAndPopularityService) {
         this.booksService = booksService;
+        this.booksRatingAndPopularityService = booksRatingAndPopularityService;
     }
 
     @GetMapping("/books/recommended")
@@ -42,7 +45,7 @@ public class MainPageController {
 
     @ModelAttribute("popularBooks")
     public List<BookEntity> popularBooks() {
-        return booksService.getPageOfPopularBooks(0, 6).getContent();
+        return booksRatingAndPopularityService.getPageOfPopularBooks(0, 6).getContent();
     }
 
     @ModelAttribute("mainPageActiveItem")

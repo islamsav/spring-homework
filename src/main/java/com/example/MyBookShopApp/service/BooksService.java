@@ -54,10 +54,4 @@ public class BooksService {
         }
         return bookRepository.findAllByPubDateBetween(from, to, nextPage);
     }
-
-    public Page<BookEntity> getPageOfPopularBooks(Integer offset, Integer limit) {
-        Pageable nextPage = PageRequest.of(offset, limit);
-        // добавить логику по популярности
-        return bookRepository.findAll(nextPage);
-    }
 }
