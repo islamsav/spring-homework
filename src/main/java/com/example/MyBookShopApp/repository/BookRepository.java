@@ -13,15 +13,11 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 
     Page<BookEntity> findAllByPubDateBetween(LocalDate pubDateFrom, LocalDate pubDateTo, Pageable pageable);
 
-    @Query(value = "select b.id, b.title, b.description, b.discount, b.image, b.is_bestseller, b.price, b.pub_date, b.slug, b2ut.name \n" +
-            "from book as b \n" +
-            "join book2user b2u on b.id = b2u.book_id \n" +
-            "    join book2user_type b2ut on b2u.type_id = b2ut.id", nativeQuery = true)
-    List<BookEntity> booksToUser();
+    @Query(value =
+            "SELECT b.id, b.title, b.description, b.discount, b.image, b.is_bestseller, b.price, b.pub_date, b.slug, b2ut.name \n" +
+            "FROM book as b \n" +
+            "JOIN book2user b2u on b.id = b2u.book_id \n" +
+            "JOIN book2user_type b2ut on b2u.type_id = b2ut.id", nativeQuery = true)
+    List<BookEntity> paidBooks(Pageable pageable);
 
-
-
-//    B — количество пользователей, купивших книгу,
-//    C — количество пользователей, у которых книга находится в корзине,
-//    K — количество пользователей, у которых книга отложена.
 }

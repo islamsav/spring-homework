@@ -23,4 +23,15 @@ public class BooksRatingAndPopularityService {
         // добавить логику по популярности
         return bookRepository.findAll(nextPage);
     }
+
+//    private List<BookEntity> sortingByPopular(List<BookEntity> popularBookList) {
+//        List<BookEntity> sort = new ArrayList<>(popularBookList);
+//        sort
+//    }
+
+
+//    P = B + 0,7*C + 0,4*K,
+//    B — количество пользователей, купивших книгу,
+//    C — количество пользователей, у которых книга находится в корзине,
+//    K — количество пользователей, у которых книга отложена.
 }
