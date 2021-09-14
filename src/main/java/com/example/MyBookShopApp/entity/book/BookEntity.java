@@ -95,7 +95,7 @@ public class BookEntity {
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
 
-    @Column(name = "name")
+    @Column(name = "status")
     private String status;
 
 //    В поле “status” указан статус книги по отношению к текущему пользователю:

@@ -91,5 +91,5 @@ databaseChangeLog:
             tableName: book
             columns:
               - column:
-                  name: name
+                  name: status
                   type: VARCHAR(255)
