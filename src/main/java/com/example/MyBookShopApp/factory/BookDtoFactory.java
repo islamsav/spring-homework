@@ -26,7 +26,7 @@ public class BookDtoFactory {
                 .pubDate(bookEntity.getPubDate())
                 .slug(bookEntity.getSlug())
                 .title(bookEntity.getTitle())
-                .status(bookEntity.getStatus())
+                .rating(bookEntity.getRating())
                 .build();
     }
 
