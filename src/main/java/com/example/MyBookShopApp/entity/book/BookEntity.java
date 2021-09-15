@@ -5,7 +5,6 @@ import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +17,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "book")
-public class BookEntity {
+public class BookEntity implements Comparable<BookEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT NOT NULL AUTO_INCREMENT")
@@ -98,9 +97,15 @@ public class BookEntity {
     @Column(name = "status")
     private String status;
 
-//    В поле “status” указан статус книги по отношению к текущему пользователю:
-//    KEPT (отложена),
-//    CART (в корзине)
-//    PAID (куплена, если она куплена или в архиве).
-//    Если книга не привязана, ключ “status” должен быть равен “false”.
+    // вспомогательный столбец для того, чтобы считать количество покупок
+    @Column(name = "count")
+    @JsonIgnore
+    private Integer count;
+
+
+    @Override
+    public int compareTo(BookEntity o) {
+        return count.compareTo(o.getCount());
+    }
+
 }

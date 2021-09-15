@@ -8,6 +8,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class BooksRatingAndPopularityService {
 
@@ -21,15 +26,17 @@ public class BooksRatingAndPopularityService {
     public Page<BookEntity> getPageOfPopularBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
         // добавить логику по популярности
+        Page<BookEntity> pageByStatus = bookRepository.booksByStatusCounts(nextPage);
+        List<BookEntity> list = pageByStatus.toList();
+        List<BookEntity> rating = new ArrayList<>();
+        Map<Integer, String> idStatusMap = new HashMap<>();
+        list.forEach(book -> idStatusMap.put(book.getId(), book.getStatus()));
+
+        idStatusMap.forEach((k, v) -> {
+//            if ()
+        });
         return bookRepository.findAll(nextPage);
     }
-
-//    private List<BookEntity> sortingByPopular(List<BookEntity> popularBookList) {
-//        List<BookEntity> sort = new ArrayList<>(popularBookList);
-//        sort
-//    }
-
-
 //    P = B + 0,7*C + 0,4*K,
 //    B — количество пользователей, купивших книгу,
 //    C — количество пользователей, у которых книга находится в корзине,

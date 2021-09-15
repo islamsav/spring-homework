@@ -20,10 +20,12 @@ import java.util.List;
 public class BooksService {
 
     private final BookRepository bookRepository;
+    private final BooksRatingAndPopularityService booksRatingAndPopularityService;
 
     @Autowired
-    public BooksService(BookRepository bookRepository) {
+    public BooksService(BookRepository bookRepository, BooksRatingAndPopularityService booksRatingAndPopularityService) {
         this.bookRepository = bookRepository;
+        this.booksRatingAndPopularityService = booksRatingAndPopularityService;
     }
 
     public List<BookEntity> getAllBooks() {

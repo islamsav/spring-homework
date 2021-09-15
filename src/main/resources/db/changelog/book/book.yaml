@@ -93,3 +93,13 @@ databaseChangeLog:
               - column:
                   name: status
                   type: VARCHAR(255)
+  - changeSet:
+      id: 5
+      author: isavz
+      changes:
+        - addColumn:
+            tableName: book
+            columns:
+              - column:
+                  name: count
+                  type: INT

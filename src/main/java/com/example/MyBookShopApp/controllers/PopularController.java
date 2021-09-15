@@ -31,12 +31,13 @@ public class PopularController {
     public BooksPageDto getPopularBooks(
             @RequestParam("offset") Integer offset,
             @RequestParam("limit") Integer limit) {
-        return new BooksPageDto(booksRatingAndPopularityService.getPageOfPopularBooks(offset, limit).getContent());
+        List<BookEntity> content = booksRatingAndPopularityService.getPageOfPopularBooks(offset, limit).getContent();
+        return new BooksPageDto(content);
     }
 
     @ModelAttribute("bookList")
     public List<BookEntity> bookList() {
-        return booksService.getAllBooks();
+        return booksRatingAndPopularityService.getPageOfPopularBooks(0, 20).getContent();
     }
 
     @GetMapping(value = "/books/popular", produces = MediaType.TEXT_HTML_VALUE)
