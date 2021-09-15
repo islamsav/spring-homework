@@ -101,11 +101,4 @@ public class BookEntity implements Comparable<BookEntity> {
     @Column(name = "count")
     @JsonIgnore
     private Integer count;
-
-
-    @Override
-    public int compareTo(BookEntity o) {
-        return count.compareTo(o.getCount());
-    }
-
 }

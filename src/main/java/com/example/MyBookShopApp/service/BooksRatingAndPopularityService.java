@@ -31,11 +31,15 @@ public class BooksRatingAndPopularityService {
         List<BookEntity> rating = new ArrayList<>();
         Map<Integer, String> idStatusMap = new HashMap<>();
         list.forEach(book -> idStatusMap.put(book.getId(), book.getStatus()));
+        Map<BookEntity, Integer> booksRating = new HashMap<>();
 
         idStatusMap.forEach((k, v) -> {
-//            if ()
+            if (v.equals("KEPT")) {
+                double res = list.stream().filter(e -> e.getId().equals(k)).findFirst().get().getCount() * 0.4;
+            }
         });
         return bookRepository.findAll(nextPage);
+        // Добавить новое поле rating в BookEntity и на его основе выдавать лист
     }
 //    P = B + 0,7*C + 0,4*K,
 //    B — количество пользователей, купивших книгу,
