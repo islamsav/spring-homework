@@ -3,9 +3,9 @@ package com.example.MyBookShopApp.entity.book;
 import com.example.MyBookShopApp.entity.author.AuthorEntity;
 import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
+import com.example.MyBookShopApp.entity.other.TagEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Formula;
@@ -14,6 +14,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -96,7 +97,14 @@ public class BookEntity {
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
 
-    @Formula("(select count(*) * 0.7 as rating from book b join book2user bu on b.id = bu.book_id join book2user_type but on but.id = bu.type_id where bu.book_id = :id and but.name = 'PAID')")
-    @Column(name = "rating")
+    @ManyToMany
+    @JoinTable(
+            name = "book2tag",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<TagEntity> tag;
+
+//    @Formula("(select count(*) * 0.7 as rating from book b join book2user bu on b.id = bu.book_id join book2user_type but on but.id = bu.type_id where bu.book_id = id and but.name = 'PAID')")
     private Double rating;
 }

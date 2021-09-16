@@ -2,8 +2,11 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
-import com.example.MyBookShopApp.service.BooksRatingAndPopularityService;
-import com.example.MyBookShopApp.service.BooksService;
+import com.example.MyBookShopApp.entity.other.TagEntity;
+import com.example.MyBookShopApp.service.book.BooksRatingAndPopularityService;
+import com.example.MyBookShopApp.service.book.BooksService;
+import com.example.MyBookShopApp.service.tag.TagService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class MainPageController {
 
     private final BooksService booksService;
+    private final TagService tagService;
     private final BooksRatingAndPopularityService booksRatingAndPopularityService;
 
-    @Autowired
-    public MainPageController(BooksService booksService, BooksRatingAndPopularityService booksRatingAndPopularityService) {
-        this.booksService = booksService;
-        this.booksRatingAndPopularityService = booksRatingAndPopularityService;
-    }
 
     @GetMapping("/books/recommended")
     @ResponseBody
@@ -36,6 +36,11 @@ public class MainPageController {
     @ModelAttribute("recommendedBooks")
     public List<BookEntity> recommendedBooks() {
         return booksService.getPageOfRecommendedBooks(0, 6).getContent();
+    }
+
+    @ModelAttribute("tags")
+    public List<TagEntity> tags() {
+        return tagService.tagsByRating();
     }
 
     @ModelAttribute("recentBooks")

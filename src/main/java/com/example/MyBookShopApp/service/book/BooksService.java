@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.service.book;
 
 import com.example.MyBookShopApp.dto.recent.RecentByDateDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
@@ -55,5 +55,14 @@ public class BooksService {
             return bookRepository.findAll(nextPage);
         }
         return bookRepository.findAllByPubDateBetween(from, to, nextPage);
+    }
+
+    public Page<BookEntity> getPageOfTagsById(Integer offset, Integer limit, Integer id) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return bookRepository.findBookEntitiesByTagId(id, nextPage);
+    }
+
+    public String getTagNameByTagId(Integer id) {
+        return bookRepository.tagNameByTagId(id);
     }
 }

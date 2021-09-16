@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.service.author;
 
 import com.example.MyBookShopApp.entity.author.AuthorEntity;
 import com.example.MyBookShopApp.repository.AuthorRepository;

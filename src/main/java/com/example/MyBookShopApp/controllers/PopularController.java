@@ -2,8 +2,8 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
-import com.example.MyBookShopApp.service.BooksRatingAndPopularityService;
-import com.example.MyBookShopApp.service.BooksService;
+import com.example.MyBookShopApp.service.book.BooksRatingAndPopularityService;
+import com.example.MyBookShopApp.service.book.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

@@ -120,9 +120,7 @@ p.error-browser
                                         <!--                                        </div>-->
                                         <div class="Card-cost">
                                             <span class="Card-priceOld" th:text="${book.price * 1.5}">₽300.00</span>
-                                            <span
-                                                    class="Card-price" th:text="${book.price + ' ₽'}">190.00
-                                        </span>
+                                            <span class="Card-price" th:text="${book.price + ' ₽'}">190.00</span>
                                         </div>
                                     </div>
                                 </div>
@@ -183,107 +181,21 @@ p.error-browser
             </div>
             <h2 class="Middle-title" th:text="#{main.title}">Книги по тегам
             </h2>
-            <div class="Tags" id="tags">
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.sovremennaya}">современная
-                    литература</a>
+            <div class="Tags" id="tags" th:each="tag : ${tags}" th:switch="${tag.rating}">
+                <div class="Tag" th:case="0" th:classappend="Tag_xs">
+                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
                 </div>
-                <div class="Tag Tag_sm"><a href="/tags/index.html" th:text="#{main.klassicheskaya}">классическая
-                    литература</a>
+                <div class="Tag" th:case="1" th:classappend="Tag_xs">
+                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
                 </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.zarubezhnaya}">зарубежная литература</a>
+                <div class="Tag" th:case="2" th:classappend="Tag_sm">
+                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
                 </div>
-                <div class="Tag Tag_md"><a href="/tags/index.html" th:text="#{main.fantasy}">фэнтези</a>
+                <div class="Tag" th:case="3" th:classappend="Tag_md">
+                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
                 </div>
-                <div class="Tag Tag_lg"><a href="/tags/index.html" th:text="#{main.angl}">английская литература</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.rus}">русская литература</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.usa}">американская литература</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.fantastic}">фантастика</a>
-                </div>
-                <div class="Tag Tag_md"><a href="/tags/index.html" th:text="#{main.child}">детская литература</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.detectiv}">детектив</a>
-                </div>
-                <div class="Tag Tag_sm"><a href="/tags/index.html" th:text="#{main.love}">любовь</a>
-                </div>
-                <div class="Tag Tag_sm"><a href="/tags/index.html" th:text="#{main.mistic}">мистика</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.humor}">юмор</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.prikluch}">приключения</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.skazka}">сказка</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.france}">французская литература</a>
-                </div>
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.engl}">англия</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.hudozh}">художественная литература</a>
-                </div>
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.psich}">психология</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.filosify}">философия</a>
-                </div>
-                <div class="Tag Tag_lg"><a href="/tags/index.html" th:text="#{main.ekran}">экранизировано</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.love1}">любимое</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.antiutopiya}">антиутопия</a>
-                </div>
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.booksyou}">books you must read before
-                    you die</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.roman}">роман</a>
-                </div>
-                <div class="Tag Tag_md"><a href="/tags/index.html" th:text="#{main.france2}">франция</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.givetwo}">дайте две</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.young}">young adult</a>
-                </div>
-                <div class="Tag Tag_lg"><a href="/tags/index.html" th:text="#{main.war}">война</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.history}">история</a>
-                </div>
-                <div class="Tag Tag_sm"><a href="/tags/index.html" th:text="#{main.flashmov}">флэшмоб 2016</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.detstvo}">детство</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.life}">жизнь</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.drama}">драма</a>
-                </div>
-                <div class="Tag Tag_md"><a href="/tags/index.html" th:text="#{main.russia}">россия</a>
-                </div>
-                <div class="Tag Tag_md"><a href="/tags/index.html" th:text="#{main.bookstravel}">книжное путешествие</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.usssr}">советская литература</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.triller}">триллер</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.usa}">америка</a>
-                </div>
-                <div class="Tag Tag_sm"><a href="/tags/index.html" th:text="#{main.deuch}">немецкая литература</a>
-                </div>
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.vampire}">вампиры</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.scool}">школьная программа</a>
-                </div>
-                <div class="Tag Tag_xs"><a href="/tags/index.html" th:text="#{main.rasskaz}">рассказы</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.magic}">магия</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.deti}">дети</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.rusclassic}">русская классика</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.frashmob2015}">флэшмоб 2015</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.boi}">биография</a>
-                </div>
-                <div class="Tag"><a href="/tags/index.html" th:text="#{main.english}">english</a>
+                <div class="Tag" th:case="*" th:classappend="Tag_lg">
+                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
                 </div>
             </div>
         </main>

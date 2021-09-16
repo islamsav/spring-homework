@@ -22,3 +22,13 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: 7
+      author: isavz
+      changes:
+        - addColumn:
+            tableName: tag
+            columns:
+              - column:
+                  name: rating
+                  type: INT

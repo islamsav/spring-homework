@@ -3,7 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.recent.RecentByDateDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
-import com.example.MyBookShopApp.service.BooksService;
+import com.example.MyBookShopApp.service.book.BooksService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
