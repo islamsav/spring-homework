@@ -181,23 +181,15 @@ p.error-browser
             </div>
             <h2 class="Middle-title" th:text="#{main.title}">Книги по тегам
             </h2>
-            <div class="Tags" id="tags" th:each="tag : ${tags}" th:switch="${tag.rating}">
-                <div class="Tag" th:case="0" th:classappend="Tag_xs">
-                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                <div class="Tags" id="tags">
+                    <div class="Tag"  th:switch="${tag.rating}" th:each="tag : ${tags}">
+                        <a th:case="0" th:classappend="Tag_xs" th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                        <a th:case="1" th:classappend="Tag_sm" th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                        <a th:case="2" th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                        <a th:case="3" th:classappend="Tag_md" th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                        <a th:case="*" th:classappend="Tag_lg" th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
+                    </div>
                 </div>
-                <div class="Tag" th:case="1" th:classappend="Tag_xs">
-                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
-                </div>
-                <div class="Tag" th:case="2" th:classappend="Tag_sm">
-                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
-                </div>
-                <div class="Tag" th:case="3" th:classappend="Tag_md">
-                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
-                </div>
-                <div class="Tag" th:case="*" th:classappend="Tag_lg">
-                    <a th:href="@{'/books/tag/' + ${tag.id}}" th:text="${tag.name}"></a>
-                </div>
-            </div>
         </main>
     </div>
 </div>
