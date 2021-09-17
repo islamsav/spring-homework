@@ -20,12 +20,6 @@ public class BooksRatingAndPopularityService {
 
     public Page<BookEntity> getPageOfPopularBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        // добавить логику по популярности
-        return bookRepository.findAll(nextPage);
-        // Добавить новое поле rating в BookEntity и на его основе выдавать лист
+        return bookRepository.findAllBooksByHighRating(nextPage);
     }
-//    P = B + 0,7*C + 0,4*K,
-//    B — количество пользователей, купивших книгу,
-//    C — количество пользователей, у которых книга находится в корзине,
-//    K — количество пользователей, у которых книга отложена.
 }

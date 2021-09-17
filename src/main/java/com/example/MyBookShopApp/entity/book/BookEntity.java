@@ -103,11 +103,9 @@ public class BookEntity {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    @JsonIgnore
     private Set<TagEntity> tag;
 
-//    @Formula("(select sum(\n" +
-//            "    (select count(*) from book b join book2user bu on b.id = bu.book_id join book2user_type but on but.id = bu.type_id where bu.book_id = id and but.name = 'PAID') +\n" +
-//            "    (select count(*) * 0.7 from book b join book2user bu on b.id = bu.book_id join book2user_type but on but.id = bu.type_id where bu.book_id = id and but.name = 'KEPT') +\n" +
-//            "    (select count(*) * 0.4 from book b join book2user bu on b.id = bu.book_id join book2user_type but on but.id = bu.type_id where bu.book_id = id and but.name = 'CART'))  as rating)")
+    @JsonIgnore
     private Double rating;
 }

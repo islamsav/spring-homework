@@ -71,25 +71,5 @@ databaseChangeLog:
              tableName:  book
              columns:
                -  column:
-                    name:  times_bought
-                    type:  INT
-  - changeSet:
-      id: 3
-      author: isavz
-      changes:
-        - dropColumn:
-            tableName: book
-            columns:
-              - column:
-                  name: times_bought
-
-  - changeSet:
-      id: 4
-      author: isavz
-      changes:
-        - addColumn:
-            tableName: book
-            columns:
-              - column:
-                  name: rating
-                  type: FLOAT
+                    name:  rating
+                    type:  FLOAT

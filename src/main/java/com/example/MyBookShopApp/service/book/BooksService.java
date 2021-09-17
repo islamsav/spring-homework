@@ -39,8 +39,7 @@ public class BooksService {
 
     public Page<BookEntity> getPageOfRecentBooks(Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset, limit);
-        // добавить логику по датам
-        return bookRepository.findAll(nextPage);
+        return bookRepository.findAllBooksByPubDate(nextPage);
     }
 
     public Page<BookEntity> getPageOfRecentBooksWithPubDateBetween(Integer offset, Integer limit, RecentByDateDto recentByDateDto) {
@@ -51,8 +50,8 @@ public class BooksService {
         try {
             from = LocalDate.parse(recentByDateDto.getFrom(), formatter);
             to = LocalDate.parse(recentByDateDto.getTo(), formatter);
-        } catch (DateTimeParseException e) {
-            return bookRepository.findAll(nextPage);
+        } catch (DateTimeParseException | NullPointerException e) {
+            return bookRepository.findAllBooksByPubDate(nextPage);
         }
         return bookRepository.findAllByPubDateBetween(from, to, nextPage);
     }
