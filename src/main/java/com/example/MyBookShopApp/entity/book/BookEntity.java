@@ -8,7 +8,6 @@ import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -12,6 +12,7 @@ public class BookDtoFactory {
 
     /**
      * Метод преобразует Entity класс в DTO класс отсекая ненужные поля
+     *
      * @param bookEntity BookEntity
      * @return BookDto
      */
@@ -32,6 +33,7 @@ public class BookDtoFactory {
 
     /**
      * Метод преобразует List<BookEntity> в List<BookDto> отсекая ненужные поля
+     *
      * @param bookEntityList List<BookEntity>
      * @return List<BookDto>
      */
