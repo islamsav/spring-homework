@@ -64,4 +64,13 @@ public class BooksService {
     public String getTagNameByTagId(Integer id) {
         return bookRepository.tagNameByTagId(id);
     }
+
+    public Page<BookEntity> booksToGenre(Integer id, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return bookRepository.findBooksToGenreId(id, nextPage);
+    }
+
+    public List<BookEntity> booksToGenre(Integer id) {
+        return bookRepository.findBooksByGenreId(id);
+    }
 }

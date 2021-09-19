@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/books/tag")
 public class TagsController {
 
     private final BooksService booksService;
@@ -22,9 +21,9 @@ public class TagsController {
         this.booksService = booksService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/books/tag/{id}")
     public String tagsPage(Model model, @PathVariable Integer id) {
-        model.addAttribute("id", id);
+        model.addAttribute("refreshid", id);
         model.addAttribute("tagName", booksService.getTagNameByTagId(id));
         return "/tags/index";
     }
@@ -34,12 +33,12 @@ public class TagsController {
         return booksService.getPageOfTagsById(0, 20, id).getContent();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/books/tag/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public BooksPageDto getPageByOffset(
             @PathVariable Integer id,
-            @RequestParam(required = false) Integer offset,
-            @RequestParam(required = false) Integer limit) {
+            @RequestParam("offset") Integer offset,
+            @RequestParam("limit") Integer limit) {
         return new BooksPageDto(booksService.getPageOfTagsById(offset, limit, id).getContent());
     }
 }

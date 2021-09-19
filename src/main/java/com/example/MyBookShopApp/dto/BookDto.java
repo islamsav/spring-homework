@@ -1,15 +1,11 @@
 package com.example.MyBookShopApp.dto;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Builder
 public class BookDto {
     private Integer id;

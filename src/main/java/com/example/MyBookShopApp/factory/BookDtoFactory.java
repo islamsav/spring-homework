@@ -16,7 +16,7 @@ public class BookDtoFactory {
      * @param bookEntity BookEntity
      * @return BookDto
      */
-    public BookDto createBookDto(BookEntity bookEntity) {
+    public static BookDto createBookDto(BookEntity bookEntity) {
         return BookDto.builder()
                 .id(bookEntity.getId())
                 .description(bookEntity.getDescription())
@@ -37,9 +37,9 @@ public class BookDtoFactory {
      * @param bookEntityList List<BookEntity>
      * @return List<BookDto>
      */
-    public List<BookDto> createBookDtoList(List<BookEntity> bookEntityList) {
+    public static List<BookDto> createBookDtoList(List<BookEntity> bookEntityList) {
         return bookEntityList.stream()
-                .map(this::createBookDto)
+                .map(BookDtoFactory::createBookDto)
                 .collect(Collectors.toList());
     }
 }
