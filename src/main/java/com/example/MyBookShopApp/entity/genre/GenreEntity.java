@@ -13,10 +13,10 @@ public class GenreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(columnDefinition = "INT")
-    private int parentId;
+    private Integer parentId;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String slug;
