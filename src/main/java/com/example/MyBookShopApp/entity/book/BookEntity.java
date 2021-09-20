@@ -6,6 +6,7 @@ import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.other.TagEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -107,4 +108,10 @@ public class BookEntity {
 
     @JsonIgnore
     private Double rating;
+
+    @JsonProperty
+    public Integer discountPrice() {
+        // рассчитывать цену по скидке
+        return 0;
+    }
 }
