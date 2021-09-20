@@ -49,17 +49,15 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html">Главная</a>
+                <li class="breadcrumbs-item"><a th:href="@{/}">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html">Жанры</a>
+                <li class="breadcrumbs-item"><a th:href="@{/books/genre}">Жанры</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html">Легкое чтение</a>
-                </li>
-                <li class="breadcrumbs-item breadcrumbs-item_current"><span>Детективы</span>
+                <li class="breadcrumbs-item"><a th:text="${genreName}">Легкое чтение</a>
                 </li>
             </ul>
             <header class="Middle-header">
-                <h1 class="Middle-title">Детективы
+                <h1 class="Middle-title" th:text="${genreName}">Детективы
                 </h1>
             </header>
             <div class="Section">

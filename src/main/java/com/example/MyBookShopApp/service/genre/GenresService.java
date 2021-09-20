@@ -20,4 +20,8 @@ public class GenresService {
     public List<GenreEntity> allGenres() {
         return genresRepository.findAll();
     }
+
+    public GenreEntity getGenreNameByGenreId(Integer genreId) {
+        return genresRepository.getGenreEntityById(genreId);
+    }
 }

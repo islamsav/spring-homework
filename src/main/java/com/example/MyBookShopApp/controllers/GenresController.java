@@ -34,6 +34,7 @@ public class GenresController {
     public String genrePage(@PathVariable Integer id, Model model) {
         model.addAttribute("refreshid", id);
         model.addAttribute("genresBook", booksService.booksToGenre(id));
+        model.addAttribute("genreName", genresService.getGenreNameByGenreId(id).getName());
         return "genres/slug";
     }
 

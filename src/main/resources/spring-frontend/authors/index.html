@@ -52,7 +52,7 @@
             <div class="Section">
                 <div class="Authors">
                     <div class="Authors-links">
-                        <a th:each="authorList: ${authorsMap}" class="Authors-link" href="#a"
+                        <a th:each="authorList: ${authorsMap}" class="Authors-link"
                            th:href="'#' + ${#strings.toLowerCase(authorList.key)}" th:text="${authorList.key}">
                             А</a>
                     </div>
@@ -61,9 +61,9 @@
                             th:text="${authorList.key}">А
                         </h2>
                         <div class="Authors-letter">
-                            <div th:each="author: ${authorList.value}" class="Authors-item"><a href="/authors/slug.html"
-                                                                                               th:text="${author.name}">Абгарян
-                                Наринэ</a>
+                            <div th:each="author: ${authorList.value}" class="Authors-item">
+                                <a th:href="@{'/authors/slug/' + ${author.id}}"
+                                   th:text="${author.name}">Абгарян Наринэ</a>
                             </div>
                         </div>
                     </div>

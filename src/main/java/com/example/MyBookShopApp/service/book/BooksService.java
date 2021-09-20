@@ -73,4 +73,9 @@ public class BooksService {
     public List<BookEntity> booksToGenre(Integer id) {
         return bookRepository.findBooksByGenreId(id);
     }
+
+    public Page<BookEntity> booksByAuthor(Integer offset, Integer limit, Integer id) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return bookRepository.findAuthorEntityById(id, nextPage);
+    }
 }
