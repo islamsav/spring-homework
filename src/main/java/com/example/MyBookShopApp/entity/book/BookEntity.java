@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,9 +110,14 @@ public class BookEntity {
     @JsonIgnore
     private Double rating;
 
+    /**
+     *
+     * @return Цена со скидкой
+     */
     @JsonProperty
     public Integer discountPrice() {
-        // рассчитывать цену по скидке
-        return 0;
+        double discountDouble = BigDecimal.valueOf(discount).doubleValue();
+        double discountPrice = price * discountDouble / 100;
+        return Math.toIntExact(Math.round(price - discountPrice));
     }
 }
