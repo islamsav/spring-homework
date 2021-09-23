@@ -5,6 +5,7 @@ import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.other.TagEntity;
 import com.example.MyBookShopApp.entity.user.UserEntity;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class BookEntity {
     private String description;
 
     @Column(columnDefinition = "SMALLINT NOT NULL DEFAULT 0")
+    @JsonProperty("discount")
     private Integer discount;
 
     @Column(columnDefinition = "VARCHAR(255)")
@@ -41,6 +43,7 @@ public class BookEntity {
     private Boolean isBestseller;
 
     @Column(columnDefinition = "INT NOT NULL")
+    @JsonProperty("price")
     private Integer price;
 
     @Column(name = "pub_date", columnDefinition = "DATE NOT NULL")
@@ -109,6 +112,14 @@ public class BookEntity {
 
     @JsonIgnore
     private Double rating;
+
+    @JsonGetter("authors")
+    public String author() {
+        if (authors.size() > 0) {
+            return authors.get(0).getName();
+        }
+        return null;
+    }
 
     /**
      *
