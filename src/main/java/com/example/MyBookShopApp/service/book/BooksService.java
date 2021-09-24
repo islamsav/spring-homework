@@ -78,4 +78,8 @@ public class BooksService {
         Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAuthorEntityById(id, nextPage);
     }
+
+    public BookEntity getBookBySlug(String slug) {
+        return bookRepository.findBookEntityBySlug(slug);
+    }
 }

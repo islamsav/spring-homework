@@ -49,4 +49,6 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
             " join author a on a.id = b2a.author_id\n" +
             " where a.id = :id", nativeQuery = true)
     Page<BookEntity> findAuthorEntityById(Integer id, Pageable pageable);
+
+    BookEntity findBookEntityBySlug(String slug);
 }

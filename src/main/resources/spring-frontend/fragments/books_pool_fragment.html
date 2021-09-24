@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <body>
 <div class="Card" th:fragment="card-fragment">
-    <a class="Card-picture" href="/books/slug.html">
+    <a class="Card-picture" th:href="@{'/books/' + ${book.slug}}">
         <img th:src="${book.image}" alt="card.jpg"/>
         <div class="Card-ribbon">
             <span class="Card-ribbonText" th:if="${book.isBestseller}">Бестселлер</span>
@@ -11,7 +11,7 @@
         </div>
     </a>
     <div class="Card-content">
-        <strong class="Card-title"><a href="/books/slug.html" th:text="${book.title}">Техника</a>
+        <strong class="Card-title"><a th:href="@{'/books/' + ${book.slug}}" th:text="${book.title}">Техника</a>
         </strong>
         <div class="Card-description" th:text="${book.author()}">Кондратенко Валерий
             Петрович
