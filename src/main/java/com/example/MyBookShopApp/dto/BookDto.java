@@ -12,7 +12,7 @@ public class BookDto {
     private String description;
     private Integer discount;
     private String image;
-    private Boolean isBestseller;
+    private Integer isBestseller;
     private Integer price;
     private LocalDate pubDate;
     private String slug;

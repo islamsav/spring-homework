@@ -40,7 +40,7 @@ public class BookEntity {
 
     @Column(name = "is_bestseller",
             columnDefinition = "SMALLINT NOT NULL")
-    private Boolean isBestseller;
+    private Integer isBestseller;
 
     @Column(columnDefinition = "INT NOT NULL")
     @JsonProperty("price")
