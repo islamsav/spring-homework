@@ -28,7 +28,7 @@ public class ResourceStorage {
             }
             String fileName = slug + "." + FilenameUtils.getExtension(file.getOriginalFilename());
             Path path = Paths.get(uploadPath, fileName);
-            resourceURI = "/springtemp/" + fileName;
+            resourceURI = "/springtemp/images/" + fileName;
             file.transferTo(path); //uploading user file here
         }
         return resourceURI;

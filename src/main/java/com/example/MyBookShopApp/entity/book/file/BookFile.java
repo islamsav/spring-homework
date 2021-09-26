@@ -1,7 +1,13 @@
 package com.example.MyBookShopApp.entity.book.file;
 
+import com.example.MyBookShopApp.entity.book.BookEntity;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "book_file")
 public class BookFile {
@@ -16,38 +22,10 @@ public class BookFile {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String path;
 
-    @Column(name = "book_file_type_id", columnDefinition = "INT NOT NULL")
+    @Column(name = "type_id", columnDefinition = "INT NOT NULL")
     private Integer typeId;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Integer getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private BookEntity book;
 }

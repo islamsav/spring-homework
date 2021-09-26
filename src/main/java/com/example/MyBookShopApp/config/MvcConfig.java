@@ -14,7 +14,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/springtemp/**")
+                .addResourceHandler("/springtemp/images/**")
                 .addResourceLocations("file:" + uploadPath + "/");
     }
 }

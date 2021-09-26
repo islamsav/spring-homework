@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.entity.book;
 
 import com.example.MyBookShopApp.entity.author.AuthorEntity;
+import com.example.MyBookShopApp.entity.book.file.BookFile;
 import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.other.TagEntity;
@@ -37,6 +38,9 @@ public class BookEntity {
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String image;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookFile> bookFileList = new ArrayList<>();
 
     @Column(name = "is_bestseller",
             columnDefinition = "SMALLINT NOT NULL")
