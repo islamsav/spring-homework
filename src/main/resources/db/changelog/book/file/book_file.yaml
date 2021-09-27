@@ -36,3 +36,9 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: false
+              - column:
+                  name: book_id
+                  remarks: тип файла
+                  type: INT
+                  constraints:
+                    nullable: false
