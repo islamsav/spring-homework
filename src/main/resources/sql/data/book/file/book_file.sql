@@ -1,6 +1,6 @@
-INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (1, 'oWwgqobmXW', 'Inverse logistical task-force', 0, 1);
-INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (2, 'ugqGju8GXYD', 'Configurable national knowledge base', 1, 2);
-INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (3, 'NHY4IemTo1Pt', 'Progressive disintermediate contingency', 0, 3);
+INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (1, 'oWwgqobmXW', 'Inverse_logistical_task_force.pdf', 1, 1);
+INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (2, 'ugqGju8GXYD', 'Inverse_logistical_task_force.fb2', 2, 1);
+INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (3, 'oWwgqobmXW1a', 'Inverse_logistical_task_force.epub', 3, 1);
 INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (4, '7kEIM4x42e', 'Universal homogeneous neural-net', 1, 4);
 INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (5, 'q3PfwNFG', 'User-centric client-server database', 0, 5);
 INSERT INTO book_file (id, hash, path, type_id, book_id) VALUES (6, '0LxQhwDYp8', 'Extended multi-state internet solution', 0, 6);
