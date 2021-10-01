@@ -86,4 +86,8 @@ public class BooksService {
     public void save(BookEntity book) {
         bookRepository.save(book);
     }
+
+    public List<BookEntity> booksSlugs(String[] slugs) {
+        return bookRepository.findBookEntityBySlugIn(slugs);
+    }
 }
