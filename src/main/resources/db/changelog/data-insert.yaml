@@ -119,3 +119,10 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: sql/data/book/link/book2user.sql
+
+  - changeSet:
+      id: 41
+      author: isavz
+      changes:
+        - sqlFile:
+            path: sql/data/book/link/book2rating.sql

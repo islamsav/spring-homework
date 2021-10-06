@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.entity.book;
 
 import com.example.MyBookShopApp.entity.author.AuthorEntity;
 import com.example.MyBookShopApp.entity.book.file.BookFile;
+import com.example.MyBookShopApp.entity.book.links.Book2RatingEntity;
 import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
 import com.example.MyBookShopApp.entity.genre.GenreEntity;
 import com.example.MyBookShopApp.entity.other.TagEntity;
@@ -105,6 +106,13 @@ public class BookEntity {
     @JsonIgnore
     private List<BookReviewEntity> bookReviewList = new ArrayList<>();
 
+    @OneToMany
+    @JoinTable(name = "book2rating",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "id"))
+    @JsonIgnore
+    private List<Book2RatingEntity> book2RatingEntities = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
             name = "book2tag",
@@ -126,7 +134,6 @@ public class BookEntity {
     }
 
     /**
-     *
      * @return Цена со скидкой
      */
     @JsonProperty

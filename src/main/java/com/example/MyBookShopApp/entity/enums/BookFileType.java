@@ -20,7 +20,8 @@ public enum BookFileType {
                 return BookFileType.EPUB.fileExtensions;
             case 3:
                 return BookFileType.FB2.fileExtensions;
-            default: return "";
+            default:
+                return "";
         }
     }
 }

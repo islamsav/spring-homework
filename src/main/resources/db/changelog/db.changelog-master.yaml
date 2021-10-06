@@ -40,4 +40,6 @@ databaseChangeLog:
     - include:
         file: db/changelog/other/faq.yaml
     - include:
+          file: db/changelog/book/link/book2rating.yaml
+    - include:
         file: db/changelog/data-insert.yaml

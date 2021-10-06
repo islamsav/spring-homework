@@ -72,7 +72,7 @@ public class PostponedController {
     @PostMapping("/changeBookStatus/postpone/remove/{slug}")
     public String handleRemoveBook(
             @PathVariable String slug,
-            @CookieValue(name = "isPostponeEmpty", required = false) String postponeContent,
+            @CookieValue(name = "postponeContent", required = false) String postponeContent,
             HttpServletResponse response,
             Model model) {
         if (postponeContent != null && !postponeContent.isEmpty()) {

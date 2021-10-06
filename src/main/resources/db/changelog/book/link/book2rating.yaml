@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: isavz
+      changes:
+        - createTable:
+            tableName: book2rating
+            remarks:
+            columns:
+              - column:
+                  name: id
+                  remarks: id связи
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: id
+                    nullable: false
+              - column:
+                  name: book_id
+                  remarks: идентификатор книги
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  remarks: рейтинг
+                  type: INT
+                  constraints:
+                    nullable: false
