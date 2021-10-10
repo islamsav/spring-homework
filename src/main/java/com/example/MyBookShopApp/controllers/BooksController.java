@@ -1,7 +1,9 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookRatingDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.service.ResourceStorage;
+import com.example.MyBookShopApp.service.book.BookRatingService;
 import com.example.MyBookShopApp.service.book.BooksService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,25 @@ import java.nio.file.Path;
 public class BooksController {
 
     private final BooksService booksService;
+    private final BookRatingService bookRatingService;
     private final ResourceStorage storage;
 
+
     @Autowired
-    public BooksController(BooksService booksService, ResourceStorage storage) {
+    public BooksController(BooksService booksService, BookRatingService bookRatingService, ResourceStorage storage) {
         this.booksService = booksService;
+        this.bookRatingService = bookRatingService;
         this.storage = storage;
     }
 
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable String slug, Model model) {
         BookEntity book = booksService.getBookBySlug(slug);
+        BookRatingDto bookRating = bookRatingService.bookRating(book.getId());  //TODO  <span class="Rating-stars"><span class="Rating-star Rating-star_view">
+//        Rating-star_view   выделяет
+
         model.addAttribute("slugBook", book);
+        model.addAttribute("bookRating", bookRating);
         return "books/slug";
     }
 
