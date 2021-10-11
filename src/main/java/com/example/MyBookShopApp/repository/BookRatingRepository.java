@@ -19,7 +19,7 @@ public interface BookRatingRepository extends JpaRepository<Book2RatingEntity, I
     @Query(value = "select round(avg(b2r.rating))\n" +
             "from book2rating b2r\n" +
             "join book b on b.id = b2r.book_id\n" +
-            "where b.id = 1", nativeQuery = true)
+            "where b.id = :id", nativeQuery = true)
     Integer averageRating(@Param("id") Integer id);
 
 }
