@@ -86,7 +86,8 @@ p.error-browser
                                             th:replace="~{fragments/book_rating_fragment :: ratingStars(${bookRating.getAverage()}
                                             , ${bookRating.getTotal()})}"
                                     >
-                                    </div>                                    <div class="modal modal_compression modal_dropdown">
+                                    </div>
+                                    <div class="modal modal_compression modal_dropdown">
                                         <div class="modal-window"><a class="modal-close"
                                                                      href="#"><span></span><span></span></a>
                                             <strong class="modal-title">Распределение оценок
@@ -338,9 +339,10 @@ p.error-browser
                                 </button>
                             </div>
                             <div class="ProductCard-assessment"><span
-                                    class="ProductCard-titleProp">Оцените книгу:</span><span class="Rating Rating_input"
-                                                                                             data-bookid="2121"><span
-                                    class="Rating-stars"><span class="Rating-star">
+                                    class="ProductCard-titleProp">Оцените книгу:</span>
+                                <span class="Rating Rating_input"
+                                      th:attr="data-bookid=${slugBook.id}"><span
+                                        class="Rating-stars"><span class="Rating-star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                           <g>
                             <g>
@@ -349,7 +351,8 @@ p.error-browser
                             </g>
                           </g>
                         </svg></span>
-                      <input name="rating" type="radio" value="1"/><span class="Rating-star">
+                      <input name="rating" type="radio" th:attr="data-bookid=${slugBook.id}" value="1"/><span
+                                            class="Rating-star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                           <g>
                             <g>
@@ -358,7 +361,8 @@ p.error-browser
                             </g>
                           </g>
                         </svg></span>
-                      <input name="rating" type="radio" value="2"/><span class="Rating-star">
+                      <input name="rating" type="radio" th:attr="data-bookid=${slugBook.id}" value="2"/><span
+                                            class="Rating-star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                           <g>
                             <g>
@@ -367,7 +371,8 @@ p.error-browser
                             </g>
                           </g>
                         </svg></span>
-                      <input name="rating" type="radio" value="3"/><span class="Rating-star">
+                      <input name="rating" type="radio" th:attr="data-bookid=${slugBook.id}" value="3"/><span
+                                            class="Rating-star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                           <g>
                             <g>
@@ -376,7 +381,8 @@ p.error-browser
                             </g>
                           </g>
                         </svg></span>
-                      <input name="rating" type="radio" value="4"/><span class="Rating-star">
+                      <input name="rating" type="radio" th:attr="data-bookid=${slugBook.id}" value="4"/><span
+                                            class="Rating-star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                           <g>
                             <g>
@@ -385,7 +391,7 @@ p.error-browser
                             </g>
                           </g>
                         </svg></span>
-                      <input name="rating" type="radio" value="5"/></span></span>
+                      <input name="rating" type="radio" th:attr="data-bookid=${slugBook.id}" value="5"/></span></span>
                             </div>
                             <div class="ProductCard-tags"><span class="ProductCard-titleProp">Тэги:</span><a
                                     href="/tags/">Современные</a>,&#32;<a href="/tags/">Психологическая проза</a>

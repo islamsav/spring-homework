@@ -20,6 +20,8 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
             "where b2t.tag_id = :id", nativeQuery = true)
     Page<BookEntity> findBookEntitiesByTagId(@Param("id") Integer id, Pageable pageable);
 
+    BookEntity findBookEntityById(Integer bookId);
+
     @Query("select t.name from TagEntity as t where t.id = :id")
     String tagNameByTagId(@Param("id") Integer id);
 

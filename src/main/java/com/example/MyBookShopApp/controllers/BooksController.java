@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BookRateDto;
 import com.example.MyBookShopApp.dto.BookRatingDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.service.ResourceStorage;
@@ -38,12 +39,19 @@ public class BooksController {
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable String slug, Model model) {
         BookEntity book = booksService.getBookBySlug(slug);
-        BookRatingDto bookRating = bookRatingService.bookRating(book.getId());  //TODO  <span class="Rating-stars"><span class="Rating-star Rating-star_view">
-//        Rating-star_view   выделяет
-
+        BookRatingDto bookRating = bookRatingService.bookRating(book.getId());
         model.addAttribute("slugBook", book);
         model.addAttribute("bookRating", bookRating);
         return "books/slug";
+    }
+
+    @PostMapping(value = "/changeBookStatus/vote/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<BookRateDto> changeRating(
+            @PathVariable Integer bookId,
+            @RequestParam Integer value) {
+        bookRatingService.saveRate(bookId, value);
+        return ResponseEntity.ok(new BookRateDto(true));
     }
 
     @PostMapping("/{slug}/img/save")

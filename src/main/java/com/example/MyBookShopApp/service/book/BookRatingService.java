@@ -62,4 +62,17 @@ public class BookRatingService {
     private int averageRating(Integer bookId) {
         return bookRatingRepository.averageRating(bookId);
     }
+
+
+    /**
+     * Созраняет значение рейтинга
+     * @param bookId book_id
+     * @param value значение рейтинга от 1 до 5
+     */
+    public void saveRate(Integer bookId, Integer value) {
+        Book2RatingEntity book2RatingEntity = new Book2RatingEntity();
+        book2RatingEntity.setBookId(bookId);
+        book2RatingEntity.setRating(value);
+        bookRatingRepository.save(book2RatingEntity);
+    }
 }

@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.service.book;
 
 import com.example.MyBookShopApp.dto.recent.RecentByDateDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
+import com.example.MyBookShopApp.entity.book.links.Book2RatingEntity;
 import com.example.MyBookShopApp.repository.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,5 +90,9 @@ public class BooksService {
 
     public List<BookEntity> booksSlugs(String[] slugs) {
         return bookRepository.findBookEntityBySlugIn(slugs);
+    }
+
+    public BookEntity bookById(Integer id) {
+        return bookRepository.findBookEntityById(id);
     }
 }
