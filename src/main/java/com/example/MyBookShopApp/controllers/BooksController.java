@@ -10,6 +10,8 @@ import com.example.MyBookShopApp.service.ResourceStorage;
 import com.example.MyBookShopApp.service.book.BookRatingService;
 import com.example.MyBookShopApp.service.book.BookReviewService;
 import com.example.MyBookShopApp.service.book.BooksService;
+import com.example.MyBookShopApp.service.user.UserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -31,22 +33,14 @@ import java.util.Random;
 @Slf4j
 @Controller
 @RequestMapping("/books")
+@AllArgsConstructor
 public class BooksController {
 
     private final BooksService booksService;
     private final BookRatingService bookRatingService;
     private final BookReviewService bookReviewService;
     private final ResourceStorage storage;
-    private final UserRepository userRepository;
-
-    @Autowired
-    public BooksController(BooksService booksService, BookRatingService bookRatingService, BookReviewService bookReviewService, ResourceStorage storage, UserRepository userRepository) {
-        this.booksService = booksService;
-        this.bookRatingService = bookRatingService;
-        this.bookReviewService = bookReviewService;
-        this.storage = storage;
-        this.userRepository = userRepository;
-    }
+    private final UserService userService;
 
     @GetMapping("/{slug}")
     public String bookPage(@PathVariable String slug, Model model) {
@@ -70,7 +64,7 @@ public class BooksController {
         user.setName(reviewAuthor);
         user.setRegTime(LocalDateTime.now());
         user.setReviews(Collections.emptySet());
-        userRepository.save(user);
+        userService.save(user);
         bookReviewEntity
                 .bookId(book.getId())
                 .rating(ratingReview)
