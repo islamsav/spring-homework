@@ -20,7 +20,8 @@
     <!--meta( http-equiv="cache-control" content="no-cache")-->
     <!--meta( http-equiv="expires" content="0")-->
     <!--link(rel="preload" href="assets/css/extra.min.css?v=" + version as="style" crossorigin="anonymous")-->
-    <link href="favicon.ico" rel="shortcut icon">
+    <!--    <link rel="icon" href="data:,">-->
+    <link rel="icon" href="data:,">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous">
@@ -475,6 +476,39 @@ p.error-browser
                         <!--        +btn('button')(data-sendstatus='UNLINK' data-bookid="[1111]")._muted Вернуть из архива-->
                     </div>
                 </div>
+                <form th:action="${'/books/addReview/' + slugBook.slug }" method="post"
+                      oninput="daysoutput.value=dayscount.value">
+                    <fieldset>
+                        <legend>Личные данные</legend>
+                        <div class="half-width">
+                            <label for="reviewAuthor">Ваше имя</label>
+                            <input id="reviewAuthor" name="reviewAuthor" type="text" required><br><br>
+                            <!-- поле обязательно для заполнения -->
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <label for="reviewText">Текст отзыва</label>
+                        <textarea id="reviewText" rows="5" name="reviewText" required></textarea><br><br>
+                    </fieldset>
+                    <span class="Rating Rating_input">
+                    <span class="Rating-stars">
+                      <span th:replace="~{fragments/book_rating_fragment :: star (false)}"></span>
+                      <input name="ratingReview" type="radio" value="1">
+                      <span th:replace="~{fragments/book_rating_fragment :: star (false)}"></span>
+                      <input name="ratingReview" type="radio" value="2">
+                      <span th:replace="~{fragments/book_rating_fragment :: star (false)}"></span>
+                      <input name="ratingReview" type="radio" value="3">
+                      <span th:replace="~{fragments/book_rating_fragment :: star (false)}"></span>
+                      <input name="ratingReview" type="radio" value="4">
+                      <span th:replace="~{fragments/book_rating_fragment :: star (false)}"></span>
+                      <input name="ratingReview" type="radio" value="5">
+                    </span></span></span>
+                    <div class="buttons">
+                        <input type="submit" value="Добавить отзыв">
+                        <input type="reset" value="Сбросить">
+                    </div>
+                </form>
+                <span></span>
                 <div class="Product-comments">
                     <div class="Product-comments-header">
                         <h3 class="Product-comments-title">Отзывы
@@ -482,7 +516,7 @@ p.error-browser
                     </div>
                 </div>
                 <div class="Comments">
-                    <div class="Comment">
+                    <div class="Comment" th:each="comment: ${slugBook.getBookReviewList()}">
                         <div class="Comment-column Comment-column_pict">
                             <div class="Comment-avatar">
                             </div>
@@ -490,9 +524,10 @@ p.error-browser
                         <div class="Comment-column">
                             <header class="Comment-header">
                                 <div>
-                                    <strong class="Comment-title">Александр Кузнецов<span class="Comment-rating"><span
-                                            class="Rating Rating_comment"><span class="Rating-stars"><span
-                                            class="Rating-star Rating-star_view">
+                                    <strong class="Comment-title" th:inline="text">[[${comment.user.name}]]</strong>
+                                    <span class="Comment-rating">
+                                        <span class="Rating Rating_comment">
+                                            <span class="Rating-stars"><span class="Rating-star Rating-star_view">
                               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
                                 <g>
                                   <g>
@@ -533,11 +568,13 @@ p.error-browser
                                   </g>
                                 </g>
                               </svg></span></span></span></span>
-                                    </strong><span class="Comment-date">17.04.2020 16:40</span>
                                 </div>
                             </header>
+                            </strong><span class="Comment-date" th:text="${comment.time}">17.04.2020 16:40</span>
+
                             <div class="Comment-content">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula
+                                <p th:text="${comment.text}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+                                    doli. Aenean commodo ligula
                                     eget dolor. Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient
                                     montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
                                     eutu, pretiumem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,

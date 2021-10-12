@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entity.book.review;
 
+import com.example.MyBookShopApp.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,7 @@ public class BookReviewEntity {
     @Column(name = "book_id")
     private int bookId;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable = false, updatable = false)
     private int userId;
 
     @Column(columnDefinition = "TIMESTAMP NOT NULL")
@@ -27,4 +28,9 @@ public class BookReviewEntity {
 
     @Column(columnDefinition = "TEXT NOT NULL")
     private String text;
+
+    private Integer rating;
+
+    @ManyToOne
+    private UserEntity user;
 }

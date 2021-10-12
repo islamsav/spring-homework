@@ -39,6 +39,12 @@ databaseChangeLog:
                   type: INT
                   constraints:
                     nullable: false
+              - column:
+                  name: rating
+                  remarks: рейтинг
+                  type: INT
+                  constraints:
+                    nullable: false
         - addForeignKeyConstraint:
             baseColumnNames: book_id
             baseTableName: book_review
@@ -57,5 +63,5 @@ databaseChangeLog:
             initiallyDeferred: false
             onDelete: NO ACTION
             onUpdate: NO ACTION
-            referencedTableName: user_entity
+            referencedTableName: users
             referencedColumnNames: id

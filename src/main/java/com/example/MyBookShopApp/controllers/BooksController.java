@@ -5,6 +5,7 @@ import com.example.MyBookShopApp.dto.BookRatingDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.service.ResourceStorage;
 import com.example.MyBookShopApp.service.book.BookRatingService;
+import com.example.MyBookShopApp.service.book.BookReviewService;
 import com.example.MyBookShopApp.service.book.BooksService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,17 @@ public class BooksController {
 
     private final BooksService booksService;
     private final BookRatingService bookRatingService;
+    private final BookReviewService bookReviewService;
     private final ResourceStorage storage;
 
-
     @Autowired
-    public BooksController(BooksService booksService, BookRatingService bookRatingService, ResourceStorage storage) {
+    public BooksController(BooksService booksService,
+                           BookRatingService bookRatingService,
+                           BookReviewService bookReviewService,
+                           ResourceStorage storage) {
         this.booksService = booksService;
         this.bookRatingService = bookRatingService;
+        this.bookReviewService = bookReviewService;
         this.storage = storage;
     }
 

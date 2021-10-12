@@ -49,7 +49,7 @@ databaseChangeLog:
             initiallyDeferred: false
             onDelete: NO ACTION
             onUpdate: NO ACTION
-            referencedTableName: user_entity
+            referencedTableName: users
             referencedColumnNames: id
         - addForeignKeyConstraint:
             baseColumnNames: review_id
