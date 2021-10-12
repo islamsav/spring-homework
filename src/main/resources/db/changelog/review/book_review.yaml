@@ -40,6 +40,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: user_name
+                  remarks: имя автора
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
                   name: rating
                   remarks: рейтинг
                   type: INT

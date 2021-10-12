@@ -476,7 +476,7 @@ p.error-browser
                         <!--        +btn('button')(data-sendstatus='UNLINK' data-bookid="[1111]")._muted Вернуть из архива-->
                     </div>
                 </div>
-                <form th:action="${'/books/addReview/' + slugBook.slug }" method="post"
+                <form th:action="${'/books/addReview/' + slugBook.slug}" method="post"
                       oninput="daysoutput.value=dayscount.value">
                     <fieldset>
                         <legend>Личные данные</legend>
@@ -535,16 +535,7 @@ p.error-browser
                             </header>
                             </strong><span class="Comment-date" th:text="${comment.time}">17.04.2020 16:40</span>
                             <div class="Comment-content">
-                                <p th:text="${comment.text}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-                                    doli. Aenean commodo ligula
-                                    eget dolor. Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient
-                                    montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                                    eutu, pretiumem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-                                    aliquet nec, vulputate eget, arcu. In enim justotuio, rhoncus ut loret, imperdiet a,
-                                    venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                    tincidunt. Cras dapibus. Vivamus element semper nisi. Aenean vulputate eleifend
-                                    tellus. Aenean leo ligula, porttitor eu, consequat vitae.
-                                </p>
+                                <p th:text="${comment.text}">Текст комента</p>
                                 <div class="Comment-footer">
                                     <div class="Comment-appeal">
                                         <button class="btn btn_white btn_like" data-btntype="check" data-check="false"

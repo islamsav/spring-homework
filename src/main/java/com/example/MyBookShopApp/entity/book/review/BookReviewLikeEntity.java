@@ -16,7 +16,7 @@ public class BookReviewLikeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "review_id", columnDefinition = "INT NOT NULL")
+    @Column(name = "review_id", columnDefinition = "INT NOT NULL", insertable = false, updatable = false)
     private int reviewId;
 
     @Column(name = "user_id")
@@ -27,4 +27,8 @@ public class BookReviewLikeEntity {
 
     @Column(columnDefinition = "SMALLINT NOT NULL")
     private short value;
+
+    @ManyToOne
+    @JoinColumn(name = "review_id", referencedColumnName = "id")
+    private BookReviewEntity bookReview;
 }

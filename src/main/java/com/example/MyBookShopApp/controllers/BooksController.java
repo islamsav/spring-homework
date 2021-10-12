@@ -3,6 +3,9 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.dto.BookRateDto;
 import com.example.MyBookShopApp.dto.BookRatingDto;
 import com.example.MyBookShopApp.entity.book.BookEntity;
+import com.example.MyBookShopApp.entity.book.review.BookReviewEntity;
+import com.example.MyBookShopApp.entity.user.UserEntity;
+import com.example.MyBookShopApp.repository.UserRepository;
 import com.example.MyBookShopApp.service.ResourceStorage;
 import com.example.MyBookShopApp.service.book.BookRatingService;
 import com.example.MyBookShopApp.service.book.BookReviewService;
@@ -19,6 +22,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Random;
 
 @Slf4j
 @Controller
@@ -29,16 +37,15 @@ public class BooksController {
     private final BookRatingService bookRatingService;
     private final BookReviewService bookReviewService;
     private final ResourceStorage storage;
+    private final UserRepository userRepository;
 
     @Autowired
-    public BooksController(BooksService booksService,
-                           BookRatingService bookRatingService,
-                           BookReviewService bookReviewService,
-                           ResourceStorage storage) {
+    public BooksController(BooksService booksService, BookRatingService bookRatingService, BookReviewService bookReviewService, ResourceStorage storage, UserRepository userRepository) {
         this.booksService = booksService;
         this.bookRatingService = bookRatingService;
         this.bookReviewService = bookReviewService;
         this.storage = storage;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/{slug}")
@@ -48,6 +55,32 @@ public class BooksController {
         model.addAttribute("slugBook", book);
         model.addAttribute("bookRating", bookRating);
         return "books/slug";
+    }
+
+    @PostMapping("/addReview/{slug}")
+    public String addReview(@PathVariable String slug,
+                            @RequestParam String reviewAuthor,
+                            @RequestParam String reviewText,
+                            @RequestParam Integer ratingReview) {
+        BookEntity book = booksService.getBookBySlug(slug);
+        BookReviewEntity.BookReviewEntityBuilder bookReviewEntity = BookReviewEntity.builder();
+        UserEntity user = new UserEntity();
+        user.setHash(String.valueOf(book.hashCode()));
+        user.setBalance(new Random().nextInt(1000));
+        user.setName(reviewAuthor);
+        user.setRegTime(LocalDateTime.now());
+        user.setReviews(Collections.emptySet());
+        userRepository.save(user);
+        bookReviewEntity
+                .bookId(book.getId())
+                .rating(ratingReview)
+                .text(reviewText)
+                .time(Date.valueOf(LocalDate.now()))
+                .user(user)
+                .userName(reviewAuthor);
+
+        bookReviewService.save(bookReviewEntity.build());
+        return "redirect:/books/" + slug;
     }
 
     @PostMapping(value = "/changeBookStatus/vote/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)

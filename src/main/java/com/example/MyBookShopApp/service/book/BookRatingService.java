@@ -66,8 +66,9 @@ public class BookRatingService {
 
     /**
      * Созраняет значение рейтинга
+     *
      * @param bookId book_id
-     * @param value значение рейтинга от 1 до 5
+     * @param value  значение рейтинга от 1 до 5
      */
     public void saveRate(Integer bookId, Integer value) {
         Book2RatingEntity book2RatingEntity = new Book2RatingEntity();
