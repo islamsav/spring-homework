@@ -64,7 +64,8 @@ public class AuthUserController {
     }
 
     @GetMapping("/my")
-    public String handleMy() {
+    public String handleMy(Model model) {
+        model.addAttribute("currentUser", userRegister.getCurrentUser());
         return "my";
     }
 
