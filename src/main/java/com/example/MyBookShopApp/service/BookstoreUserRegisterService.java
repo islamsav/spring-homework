@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.service;
 
 import com.example.MyBookShopApp.config.security.BookstoreUserDetail;
+import com.example.MyBookShopApp.config.security.jwt.JWTUtil;
 import com.example.MyBookShopApp.dto.ContactConfirmationPayload;
 import com.example.MyBookShopApp.dto.ContactConfirmationResponse;
 import com.example.MyBookShopApp.dto.RegistrationForm;
@@ -24,6 +25,8 @@ public class BookstoreUserRegisterService {
     private final BookstoreUserRepository bookstoreUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final BookstoreUserDetailService bookstoreUserDetailService;
+    private final JWTUtil jwtUtil;
 
     public void registerNewUser(RegistrationForm registrationForm) {
         if (bookstoreUserRepository.findUserEntitiesByEmail(registrationForm.getEmail()) == null) {
@@ -44,7 +47,16 @@ public class BookstoreUserRegisterService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(payload.getContact(), payload.getCode()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         ContactConfirmationResponse response = new ContactConfirmationResponse();
-        response.setResult(true);
+        response.setResult("true");
+        return response;
+    }
+
+    public ContactConfirmationResponse jwtLogin(ContactConfirmationPayload payload) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(payload.getContact(), payload.getCode()));
+        BookstoreUserDetail userDetail = (BookstoreUserDetail) bookstoreUserDetailService.loadUserByUsername(payload.getContact());
+        String jwtToken = jwtUtil.generateToken(userDetail);
+        ContactConfirmationResponse response = new ContactConfirmationResponse();
+        response.setResult(jwtToken);
         return response;
     }
 
