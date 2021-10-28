@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.config.security;
 
 import com.example.MyBookShopApp.config.security.jwt.JWTRequestFilter;
 import com.example.MyBookShopApp.service.BookstoreUserDetailService;
+import com.example.MyBookShopApp.service.JWTBlackListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BookstoreUserDetailService bookstoreUserDetailService;
     private final JWTRequestFilter filter;
+    private final JWTBlackListService jwtBlackListService;
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -43,13 +45,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf()
+                .disable()
                 .authorizeRequests()
-                .antMatchers("/my", "/profile").authenticated()//.hasRole("USER")
+                .antMatchers("/my", "/profile").authenticated()
                 .antMatchers("/**").permitAll()
                 .and().formLogin()
                 .loginPage("/signin").failureUrl("/signin")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/signin").deleteCookies("token")
+                .and().logout().logoutUrl("/logout")
+                .logoutSuccessHandler(new LogoutHandler(jwtBlackListService))
+                .logoutSuccessUrl("/signin").deleteCookies("token")
                 .and().oauth2Login()
                 .and().oauth2Client();
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

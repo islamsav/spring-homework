@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.dto.ContactConfirmationPayload;
 import com.example.MyBookShopApp.dto.ContactConfirmationResponse;
 import com.example.MyBookShopApp.dto.RegistrationForm;
+import com.example.MyBookShopApp.repository.JwtBlackListRepository;
 import com.example.MyBookShopApp.service.BookstoreUserRegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthUserController {
 
     private final BookstoreUserRegisterService userRegister;
+    private final JwtBlackListRepository jwtBlackListRepository;
 
     @GetMapping("/signin")
     public String signInPage() {
@@ -75,17 +77,4 @@ public class AuthUserController {
         model.addAttribute("currentUser", userRegister.getCurrentUser());
         return "profile";
     }
-
-//    @GetMapping("/logout")
-//    public String handleLogout(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        SecurityContextHolder.clearContext();
-//        if (session != null) {
-//            session.invalidate();
-//        }
-//        for (Cookie cookie : request.getCookies()) {
-//            cookie.setMaxAge(0);
-//        }
-//        return "redirect:/";
-//    }
 }

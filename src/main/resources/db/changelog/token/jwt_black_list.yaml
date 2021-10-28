@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: isavz
+      changes:
+        - createTable:
+            tableName: jwt_black_list
+            columns:
+              - column:
+                  name: id
+                  remarks: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: jwt_black_list_id
+                    nullable: false
+              - column:
+                  name: token
+                  remarks: токен
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: DATE
+              - column:
+                  name: updated_at
+                  type: DATE

@@ -43,3 +43,5 @@ databaseChangeLog:
           file: db/changelog/book/link/book2rating.yaml
     - include:
         file: db/changelog/data-insert.yaml
+    - include:
+        file: db/changelog/token/jwt_black_list.yaml

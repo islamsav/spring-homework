@@ -8,6 +8,7 @@ import com.example.MyBookShopApp.dto.RegistrationForm;
 import com.example.MyBookShopApp.dto.UserDto;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.example.MyBookShopApp.repository.BookstoreUserRepository;
+import com.example.MyBookShopApp.repository.JwtBlackListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +31,7 @@ public class BookstoreUserRegisterService {
     private final AuthenticationManager authenticationManager;
     private final BookstoreUserDetailService bookstoreUserDetailService;
     private final JWTUtil jwtUtil;
+    private final JwtBlackListRepository jwtBlackListRepository;
 
     public void registerNewUser(RegistrationForm registrationForm) {
         if (bookstoreUserRepository.findUserEntitiesByEmail(registrationForm.getEmail()) == null) {
@@ -63,16 +65,20 @@ public class BookstoreUserRegisterService {
         return response;
     }
 
-    public UserDto getCurrentUser() {
-        DefaultOAuth2User principal = (DefaultOAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Map<String, Object> attr = principal.getAttributes();
-        String login = attr.get("login").toString();
-        String email = attr.get("email").toString();
-        return UserDto.builder()
-                .name(login)
-                .balance(0)
-                .email(email)
-                .phone(null)
-                .build();
+    public Object getCurrentUser() {
+        Object userDetail = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (userDetail instanceof DefaultOAuth2User) {
+            Map<String, Object> attr = ((DefaultOAuth2User) userDetail).getAttributes();
+            String login = attr.get("login").toString();
+            String email = attr.get("email").toString();
+            return UserDto.builder()
+                    .name(login)
+                    .balance(0)
+                    .email(email)
+                    .phone(null)
+                    .build();
+        } else {
+            return ((BookstoreUserDetail) userDetail).getUser();
+        }
     }
 }
