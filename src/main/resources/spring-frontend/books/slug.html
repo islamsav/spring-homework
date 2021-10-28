@@ -10,8 +10,8 @@
 <![endif]-->
 <!--[if gt IE 9]><!-->
 <html lang="ru"> <!--<![endif]-->
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <title>Test BOOKSHOP</title>
     <meta name="description" content="Описание страницы">
@@ -476,7 +476,8 @@ p.error-browser
                         <!--        +btn('button')(data-sendstatus='UNLINK' data-bookid="[1111]")._muted Вернуть из архива-->
                     </div>
                 </div>
-                <form th:action="${'/books/addReview/' + slugBook.slug}" method="post"
+                <h2 sec:authorize="!isAuthenticated()">Чтобы оставить отзыв необходимо авторизоваться</h2>
+                <form sec:authorize="isAuthenticated()" th:action="${'/books/addReview/' + slugBook.slug}" method="post"
                       oninput="daysoutput.value=dayscount.value">
                     <fieldset>
                         <legend>Личные данные</legend>
