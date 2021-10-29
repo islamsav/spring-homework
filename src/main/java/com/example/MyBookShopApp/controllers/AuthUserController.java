@@ -3,7 +3,6 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.dto.ContactConfirmationPayload;
 import com.example.MyBookShopApp.dto.ContactConfirmationResponse;
 import com.example.MyBookShopApp.dto.RegistrationForm;
-import com.example.MyBookShopApp.repository.JwtBlackListRepository;
 import com.example.MyBookShopApp.service.BookstoreUserRegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
