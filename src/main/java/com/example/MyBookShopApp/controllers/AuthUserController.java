@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthUserController {
 
     private final BookstoreUserRegisterService userRegister;
-    private final JwtBlackListRepository jwtBlackListRepository;
 
     @GetMapping("/signin")
     public String signInPage() {

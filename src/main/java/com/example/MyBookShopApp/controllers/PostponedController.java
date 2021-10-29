@@ -1,7 +1,9 @@
 package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.entity.book.BookEntity;
+import com.example.MyBookShopApp.service.BookstoreUserRegisterService;
 import com.example.MyBookShopApp.service.book.BooksService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +16,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/books")
 public class PostponedController {
 
     private final BooksService booksService;
-
-    @Autowired
-    public PostponedController(BooksService booksService) {
-        this.booksService = booksService;
-    }
 
     @ModelAttribute("postponedBooks")
     public List<BookEntity> postponedBooks() {
