@@ -33,9 +33,10 @@ public class BookstoreUserRegisterService {
     private final JWTUtil jwtUtil;
     private final JwtBlackListRepository jwtBlackListRepository;
 
-    public void registerNewUser(RegistrationForm registrationForm) {
+    public UserEntity registerNewUser(RegistrationForm registrationForm) {
+        UserEntity user = new UserEntity();
         if (bookstoreUserRepository.findUserEntitiesByEmail(registrationForm.getEmail()) == null) {
-            UserEntity user = new UserEntity();
+            user = new UserEntity();
             user.setName(registrationForm.getName());
             user.setEmail(registrationForm.getEmail());
             user.setPassword(passwordEncoder.encode(registrationForm.getPass()));
@@ -46,6 +47,7 @@ public class BookstoreUserRegisterService {
             user.setReviews(new HashSet<>());
             bookstoreUserRepository.save(user);
         }
+        return user;
     }
 
     public ContactConfirmationResponse login(ContactConfirmationPayload payload) {
