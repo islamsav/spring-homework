@@ -1,8 +1,9 @@
-package com.example.MyBookShopApp.service;
+package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.dto.RegistrationForm;
 import com.example.MyBookShopApp.entity.user.UserEntity;
 import com.example.MyBookShopApp.repository.BookstoreUserRepository;
+import com.example.MyBookShopApp.service.BookstoreUserRegisterService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
