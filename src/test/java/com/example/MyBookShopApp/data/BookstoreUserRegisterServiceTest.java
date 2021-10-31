@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.controllers;
+package com.example.MyBookShopApp.data;
 
 import com.example.MyBookShopApp.dto.RegistrationForm;
 import com.example.MyBookShopApp.entity.user.UserEntity;
