@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.annotations.UserActionToCartLoggable;
 import com.example.MyBookShopApp.entity.book.BookEntity;
 import com.example.MyBookShopApp.service.book.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public class BookShopCartController {
         return "redirect:/books/" + slug;
     }
 
+    @UserActionToCartLoggable
     @PostMapping("/changeBookStatus/cart/remove/{slug}")
     public String handleRemoveBook(
             @PathVariable String slug,
