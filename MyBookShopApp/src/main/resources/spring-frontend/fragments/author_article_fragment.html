@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="article">
+    <h1 class="Middle-title" th:text="${author}">Борис Васильевич Бедный
+    </h1>
+    <article class="Article">
+        <div class="sdf">
+        </div>
+        <div class="Spoiler">
+            <div class="Spoiler-visible">
+                <div class="pict pict_left">
+                    <img th:src="${author.photo}" src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
+                </div>
+                <div>
+                    <h2>Биография</h2>
+                    <p th:text="${author.biography}">Борис Бедный родился в семье учителя в 1916 году в станице Ярославская Краснодарского
+                        края. Окончил Майкопский лесной техникум и был послан учиться в Ленинградскую
+                        лесотехническую академию. Стал специалистом по сплаву леса и приехал в Республику Коми,
+                        работать на сплавных предприятиях.
+                    </p>
+                </div>
+            </div>
+            <div class="Spoiler-footer">
+                <button class="Spoiler-trigger btn btn_primary btn_nr" type="button" data-showtext="Свернуть"
+                        data-hidetext="Показать полностью">
+                </button>
+            </div>
+        </div>
+    </article>
+</div>
+</html>
